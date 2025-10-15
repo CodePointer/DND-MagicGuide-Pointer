@@ -1,7 +1,7 @@
 # 大黄的奥术指南 (DND Magic Guide Pointer)
 
 <div align="center">
-  <img src="preview/avatar.png" height=128>
+  <img src="preview/qr-code.jpg" height=128>
 </div>
 
 一个极简的法术查询器。基于微信小程序，提供 法术数据库 + 收藏法术 的功能。
