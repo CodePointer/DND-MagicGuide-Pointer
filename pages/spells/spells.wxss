@@ -1,0 +1,18 @@
+/* pages/spells/spells.wxss */
+.page-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}
+.spell-filter-container {
+}
+.loading-containter {
+  flex: 1;
+  display: flex;
+  align-self: center;
+}
+.spell-list-container {
+  flex: 1;
+  overflow-y: auto;
+}

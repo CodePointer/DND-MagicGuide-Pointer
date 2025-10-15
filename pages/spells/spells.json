@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "大黄的奥术指南",
+  "usingComponents": {
+    "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
+    "spell-filter": "./spell-filter/spell-filter",
+    "spell-list": "/pages/common/spell-list/spell-list",
+    "spell-popup": "/pages/common/spell-popup/spell-popup",
+    "custom-tab-bar": "/custom-tab-bar/index"
+  }
+}

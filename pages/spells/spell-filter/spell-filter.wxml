@@ -1,0 +1,39 @@
+<!--pages/spells/spell-filter/spell-filter.wxml-->
+<view class="search-bar">
+  <t-search 
+    value="{{searchValue}}" 
+    disabled="{{disabled}}"
+    placeholder="法术中文/英文名" 
+    action="{{searchActionText}}" 
+    bind:change="onSearchChange" />
+</view>
+
+<view class="filter-bar">
+  <t-dropdown-menu>
+    <t-dropdown-item 
+      label="环阶" optionsColumns="5" options="{{levelSpellOptions}}" multiple 
+      value="{{selectedFilters.level}}" data-key="level" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="职业" optionsColumns="3" options="{{classSpellOptions}}" multiple
+      value="{{selectedFilters.class}}" data-key="class" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="学派" optionsColumns="4" options="{{schoolSpellOptions}}" multiple
+      value="{{selectedFilters.school}}" data-key="school" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="来源" optionsColumns="3" options="{{sourceSpellOptions}}" multiple
+      value="{{selectedFilters.source}}" data-key="source" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="其它" optionsColumns="2" options="{{specialSpellOptions}}" multiple
+      value="{{selectedFilters.special}}" data-key="special" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+  </t-dropdown-menu>
+</view>

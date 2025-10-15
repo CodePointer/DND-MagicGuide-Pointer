@@ -1,0 +1,80 @@
+<view class="container">
+  <view class="search-bar col-container">
+    <t-search
+      value="{{searchValue}}"
+      placeholder="法术中文/英文名"
+      action="{{searchActionText}}"
+      bind:blur="blurHandle"
+      bind:focus="focusHandle"
+      bind:action-click="actionHandle"
+      bind:change="changeHandle"
+    />
+  </view>
+
+  <view class="filter-bar col-container">
+    <t-dropdown-menu>
+      <t-dropdown-item
+        label="环阶"
+        optionsColumns="5"
+        options="{{levelSpellOptions}}"
+        multiple
+      />
+      <t-dropdown-item
+        label="职业"
+        optionsColumns="3"
+        options="{{classSpellOptions}}"
+        multiple
+      />
+      <t-dropdown-item
+        label="学派"
+        optionsColumns="4"
+        options="{{schoolSpellOptions}}"
+        multiple
+      />
+      <t-dropdown-item
+        label="来源"
+        optionsColumns="3"
+        options="{{sourceSpellOptions}}"
+        multiple
+      />
+      <t-dropdown-item
+        label="其它"
+        optionsColumns="2"
+        options="{{specialSpellOptions}}"
+        multiple
+      />
+    </t-dropdown-menu>
+  </view>
+
+  <!-- <view class="filter-bar col-container">
+    <t-button icon="filter" content="筛选法术" block></t-button>
+    <t-button icon="bookmark-double" content="查看全部" block></t-button>
+  </view> -->
+
+  <t-divider content="共 2 个法术" />
+
+  <view class="spell-container col-container">
+    <t-cell 
+      title="火球术 | Fireball"
+      leftIcon="numbers-3"
+      description=""
+      hover
+      arrow
+    >
+      <t-switch defaultValue="{{true}}" icon="{{['bookmark-filled', 'bookmark']}}" slot="note"/>
+    </t-cell>
+    <t-cell 
+      title="侦测魔法｜Detect Magic"
+      leftIcon="numbers-1"
+      description="专注 | 仪式"
+      hover
+      arrow
+    >
+      <t-switch defaultValue="{{false}}" icon="{{['bookmark-filled', 'bookmark']}}" slot="note"/>
+    </t-cell>
+  </view>
+
+  <view class="expand-container col-container">
+    <t-button size="large" variant="text" block>展开更多</t-button>
+  </view>
+</view>

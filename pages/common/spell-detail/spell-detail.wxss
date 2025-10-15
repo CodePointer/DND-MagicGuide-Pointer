@@ -1,0 +1,86 @@
+/* pages/common/spell-detail.wxss */
+.spell-detail-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  gap: var(--space-sm);
+}
+.title-container {
+  /* margin: var(--space-sm); */
+  /* background-color: lightcyan; */
+  display: flex;
+  align-items: center;
+}
+.name-container {
+  /* margin: var(--space-sm); */
+  flex: 1;
+  gap: var(--space-sm);
+}
+.level-container {
+  /* margin: var(--space-md); */
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.chn-name {
+  font-size: var(--font-size-title);
+}
+.eng-name {
+  font-size: var(--font-size-subtitle);
+}
+
+.keyword-container {
+  display: flex;
+  justify-content: space-between;
+}
+.keyword-text {
+  font-size: var(--font-size-bodysmall);
+  color: var(--color-text-secondary);
+}
+
+.property-container {
+  /* margin: var(--space-sm); */
+  /* background-color: lightgoldenrodyellow; */
+}
+.property-item-container {
+  display: flex;
+  gap: var(--space-sm);
+}
+.property-label-container {
+  flex: 0 0 35%;
+}
+.property-label-text {
+  font-size: var(--font-size-bodysmall);
+  font-weight: var(--font-weight-bold);
+}
+.property-value-text {
+  font-size: var(--font-size-bodysmall);
+}
+
+.description-container {
+  flex: 1;
+  min-height: 0;
+  align-self: center;
+  overflow-y: hidden;
+  display: flex;
+  /* align-items: center; */
+}
+.description-text {
+  font-size: var(--font-size-body);
+}
+
+.footnote-container {
+  /* margin: var(--space-md); */
+  margin-top: auto;
+  /* background-color: lightcoral; */
+}
+.footnote-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footnote-text {
+  font-size: var(--font-size-bodysmall);
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,11 @@
+miniprogram_npm/
+node_modules/
+dist/
+.DS_Store
+.vscode/
+__pycache__/
+*.pyc
+
+.env
+project.config.json
+config.js

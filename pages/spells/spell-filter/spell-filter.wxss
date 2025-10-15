@@ -1,0 +1,8 @@
+/* pages/spells/spell-filter/spell-filter.wxss */
+.search-bar {
+  /* margin: var(--space-md); */
+}
+
+.filter-bar {
+  /* margin: var(--space-md); */
+}

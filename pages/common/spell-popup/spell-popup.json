@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-popup": "/miniprogram_npm/tdesign-miniprogram/popup/popup",
+    "spell-detail": "/pages/common/spell-detail/spell-detail"
+  }
+}

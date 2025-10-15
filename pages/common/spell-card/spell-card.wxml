@@ -1,0 +1,17 @@
+<!--pages/common/spell-card/spell-card.wxml-->
+<t-cell 
+  title="{{title}}"
+  leftIcon="numbers-{{level}}"
+  description="{{description}}" 
+  hover 
+  arrow 
+  bind:click="handleClick"
+>
+  <t-switch 
+    value="{{marked}}"
+    icon="{{['bookmark-filled', 'bookmark']}}"
+    slot="note"
+    catch:tap="stopTap"
+    bind:change="handleSwitchChange"
+  />
+</t-cell>

@@ -1,0 +1,25 @@
+.col-container {
+  margin: var(--space-md);
+}
+
+.search-bar {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.filter-bar {
+  /* display: flex; */
+  gap: var(--space-sm);
+}
+.filter-button {
+  background-color: var(--color-bg-card);
+}
+.staronly-button {
+  display: flex;
+  gap: var(--space-md);
+  background-color: var(--color-bg-card);
+}
+.expand-container {
+  text-align: center;
+  align-items: center;
+}

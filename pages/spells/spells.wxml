@@ -1,0 +1,31 @@
+<!--pages/spells/spells.wxml-->
+<view class="page-container">
+  <view class="spell-filter-container">
+    <spell-filter 
+      disabled="{{loading}}"
+      bind:filterChange="onFilterChange"
+    />
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-containter">
+    <t-loading theme="{{ skylineRender ? 'spinner' : 'circular'}}" size="64rpx" text="正在加载法术...{{progress}}%" class="large" />
+  </view>
+
+  <view wx:else class="spell-list-container">
+    <spell-list 
+      spellTotalNumber="{{filteredSpells.length}}"
+      spells="{{showingSpells}}"
+      bind:spellCellClick="onSpellCellClick"
+      bind:spellMarkChange="onSpellSwitchChange"
+      bind:loadMoreSpell="onLoadMoreSpellClick"
+    />
+  </view>
+
+  <spell-popup 
+    spell="{{selectedSpell}}"
+    visible="{{showPopup}}"
+    bind:close="onClosePopup"
+  />
+</view>
+
+<custom-tab-bar />

@@ -1,0 +1,79 @@
+<!--pages/common/spell-detail.wxml-->
+<view class="spell-detail-container">
+  <view class="title-container">
+    <view class="name-container">
+      <view class="text-container">
+        <text class="chn-name">{{chineseName}}</text>
+      </view>
+      <view class="text-container">
+        <text class="eng-name">{{englishName}}</text>
+      </view>
+    </view>
+    <view class="level-container">
+      <t-icon name="numbers-{{level}}" size="60rpx"/>
+    </view>
+  </view>
+
+  <view class="property-container">
+    <view class="keyword-container">
+      <view class="text-container">
+        <text class="keyword-text">{{school}}</text>
+      </view>
+      <view class="text-container">
+        <text class="keyword-text">{{keywordDesc}}</text>
+      </view>
+    </view>
+
+    <view class="property-item-container">
+      <view class="property-label-container">
+        <text class="property-label-text">施法时间：</text>
+      </view>
+      <view class="property-value-container">
+        <text class="property-value-text">{{castingTime}}</text>
+      </view>
+    </view>
+
+    <view class="property-item-container">
+      <view class="property-label-container">
+        <text class="property-label-text">施法距离：</text>
+      </view>
+      <view class="property-value-container">
+        <text class="property-value-text">{{range}}</text>
+      </view>
+    </view>
+
+    <view class="property-item-container">
+      <view class="property-label-container">
+        <text class="property-label-text">持续时间：</text>
+      </view>
+      <view class="property-value-container">
+        <text class="property-value-text">{{duration}}</text>
+      </view>
+    </view>
+
+    <view class="property-item-container">
+      <view class="property-label-container">
+        <text class="property-label-text">法术成分：</text>
+      </view>
+      <view class="property-value-container">
+        <text class="property-value-text">{{componentsDesc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="description-container" scroll-y>
+    <rich-text class="description-text" nodes="{{description}}"></rich-text>
+  </scroll-view>
+
+  <view class="footnote-container">
+    <view class="footnote-item-container">
+      <view class="footnote-text-containter">
+        <text class="footnote-text">{{classDesc}}</text>
+      </view>
+      <view class="footnote-text-containter">
+        <text class="footnote-text">{{source}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>

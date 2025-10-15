@@ -1,0 +1,31 @@
+<!--pages/mine/mine.wxml-->
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading-containter">
+    <t-loading theme="{{ skylineRender ? 'spinner' : 'circular'}}" size="64rpx" text="正在加载法术...{{progress}}%" class="large" />
+  </view>
+
+  <view wx:else class="spell-list-container">
+    <spell-list 
+      spellTotalNumber="{{markedSpells.length}}"
+      spells="{{showingSpells}}"
+      bind:spellCellClick="onSpellCellClick"
+      bind:spellMarkChange="onSpellSwitchChange"
+      bind:loadMoreSpell="onLoadMoreSpellClick"
+    />
+  </view>
+
+  <t-footer
+    text="© 2025 DND Magic Guide | v{{version}}"
+  ></t-footer>
+  <t-footer
+    text="https://github.com/CodePointer/DND-MagicGuide-Pointer"
+  ></t-footer>
+  <spell-popup 
+    spell="{{selectedSpell}}"
+    visible="{{showPopup}}"
+    bind:close="onClosePopup"
+  />
+</view>
+
+
+<custom-tab-bar />

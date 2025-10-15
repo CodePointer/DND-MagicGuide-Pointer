@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "usingComponents": {
+    "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
+    "t-footer": "/miniprogram_npm/tdesign-miniprogram/footer/footer",
+    "spell-list": "/pages/common/spell-list/spell-list",
+    "spell-popup": "/pages/common/spell-popup/spell-popup",
+    "custom-tab-bar": "/custom-tab-bar/index"
+  }
+}
