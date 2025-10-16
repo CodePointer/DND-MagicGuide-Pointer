@@ -272,10 +272,19 @@ def main():
     df = pd.DataFrame([spell.to_dict() for spell in spell_list if spell.legacy is False])
     df.to_excel('all_spells.xlsx', index=False)
 
+    # Output js file
+    with open('all_spells.js', 'w', encoding='utf-8') as f:
+        f.write('const allSpells = ')
+        json.dump([spell.to_dict() for spell in spell_list if spell.legacy is False], f, ensure_ascii=False)
+        f.write(';\n')
+        f.write('export default allSpells;\n')
+
     # 输出所有法术的JSON表示
-    with open('all_spells.json', 'w', encoding='utf-8') as f:
-        json_spells = [spell.to_json() + '\n' for spell in spell_list if spell.legacy is False]
-        f.writelines(json_spells)
+    # spell_list_json = [spell.to_dict() for spell in spell_list if spell.legacy is False]
+    # with open('all_spells.json', 'w', encoding='utf-8') as f:
+    #     json.dump(spell_list_json, f, ensure_ascii=False)
+    #     json_spells = [spell.to_json() + '\n' for spell in spell_list if spell.legacy is False]
+    #     f.writelines(json_spells)
 
 
 if __name__ == '__main__':

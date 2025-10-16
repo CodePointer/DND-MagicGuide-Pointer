@@ -25,16 +25,22 @@
       {
         "value": "raw_data",
         "type": "folder"
+      },
+      {
+        "value": "preview",
+        "type": "folder"
+      },
+      {
+        "value": "cloudfunctions",
+        "type": "folder"
       }
     ],
     "include": []
   },
-  "appid": "YOUR_APP_ID_HERE",
+  "appid": "YOUR_APPID_HERE",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "condition": {},
-  "cloudfunctionRoot": "cloudfunctions/",
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
+  "condition": {}
 }

@@ -3,6 +3,8 @@
   "usingComponents": {
     "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
     "t-footer": "/miniprogram_npm/tdesign-miniprogram/footer/footer",
+    "t-toast": "/miniprogram_npm/tdesign-miniprogram/toast/toast",
+    "favorate-io": "./favorate-io/favorate-io",
     "spell-list": "/pages/common/spell-list/spell-list",
     "spell-popup": "/pages/common/spell-popup/spell-popup",
     "custom-tab-bar": "/custom-tab-bar/index"

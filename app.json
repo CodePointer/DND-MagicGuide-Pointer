@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/spells/spells",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/spells/spells"
   ],
-  "cloud": true,
   "lazyCodeLoading": "requiredComponents",
   "window": {
     "navigationBarTitleText": "大黄的奥术指南"

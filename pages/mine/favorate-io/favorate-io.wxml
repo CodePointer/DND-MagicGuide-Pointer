@@ -1,0 +1,21 @@
+<!--pages/mine/favorate-io/favorate-io.wxml-->
+<view class="button-container">
+  <t-button 
+    theme="light" 
+    block 
+    size="large" 
+    t-class="group-btn"
+    bind:tap="onImportButtonTap"
+  >
+    从剪贴板导入
+  </t-button>
+  <t-button 
+    theme="primary"
+    block
+    size="large" 
+    t-class="group-btn"
+    bind:tap="onExportButtonTap"
+  >
+    导出至剪贴板
+  </t-button>
+</view>

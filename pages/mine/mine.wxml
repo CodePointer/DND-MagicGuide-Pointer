@@ -1,10 +1,12 @@
 <!--pages/mine/mine.wxml-->
-<view class="page-container">
-  <view wx:if="{{loading}}" class="loading-containter">
-    <t-loading theme="{{ skylineRender ? 'spinner' : 'circular'}}" size="64rpx" text="正在加载法术...{{progress}}%" class="large" />
-  </view>
+<t-toast id="t-toast" />
 
-  <view wx:else class="spell-list-container">
+<view class="page-container">
+  <view class="spell-list-container">
+    <favorate-io 
+      bind:importFavoriates="onImportFavoriates"
+      bind:exportFavoriates="onExportFavoriates"
+    />
     <spell-list 
       spellTotalNumber="{{markedSpells.length}}"
       spells="{{showingSpells}}"

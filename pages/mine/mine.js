@@ -1,6 +1,8 @@
 // pages/mine/mine.js
-import { VERSION } from '../../config.js';
+import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
+const VERSION = '0.2.0-beta';
 const app = getApp();
+import allSpells from '../../spellData/allSpells';
 
 Page({
 
@@ -22,17 +24,22 @@ Page({
     version: VERSION
   },
 
+  flushPage() {
+    this.updateMarkedSpells();
+    this.loadShowingSpells(false);
+  },
+
   /**
    * markedSpells & showingSpells
    */
-  async prepareAllSpells() {
-    app.setProgressListener((progress) => {
-      this.setData({ progress });
-    });
+  prepareAllSpells() {
+    // app.setProgressListener((progress) => {
+    //   this.setData({ progress });
+    // });
     this.setData({
       loading: true,
     });
-    await app.loadSpells();
+    app.loadSpells();
     this.setData({
       loading: false,
     });
@@ -40,7 +47,7 @@ Page({
   updateMarkedSpells() {
     const favorites = new Set(app.globalData.favorites);
     this.setData({
-      markedSpells: app.globalData.spells.filter(opt => favorites.has(opt.spellId)).map(opt => {
+      markedSpells: allSpells.filter(opt => favorites.has(opt.spellId)).map(opt => {
         return { ...opt, marked: true };
       }),
     });
@@ -69,6 +76,54 @@ Page({
     };
     updateMarkedStatus('markedSpells');
     updateMarkedStatus('showingSpells');
+  },
+
+  /**
+   * Import & Export
+   */
+  checkFavorites(spellIds) {
+    const allSpellIds = new Set(allSpells.map(spell => spell.spellId));
+    const validSpellIds = spellIds.filter(id => allSpellIds.has(id));
+    app.updateFavorites(validSpellIds);
+    return validSpellIds;
+  },
+  getFavoritesStr() {
+    return app.globalData.favorites.join(',');
+  },
+  showToast(message, theme) {
+    return Toast({
+      context: this,
+      selector: '#t-toast',
+      message: message,
+      theme: theme,
+      placement: 'bottom'
+    });
+  },
+  onImportFavoriates() {
+    wx.getClipboardData({
+      success: (res) => {
+        const favorites = this.checkFavorites(res.data.split(','));
+        this.showToast(`成功导入 ${favorites.length} 个法术`, 'success');
+      },
+      fail: (err) => {
+        this.showToast(`导入失败`, 'error');
+      },
+      complete: (res) => this.flushPage(),
+    })
+  },
+  onExportFavoriates() {
+    const favoritesLength = app.globalData.favorites.length;
+    wx.setClipboardData({
+      data: this.getFavoritesStr(),
+      success: (res) => {
+        wx.hideToast();
+        this.showToast(`成功导出 ${favoritesLength} 个法术`, 'success');
+      },
+      fail: (err) => {
+        this.showToast(`导出失败`, 'error');
+      },
+      complete: (res) => this.flushPage(),
+    });
   },
 
   /**
@@ -104,8 +159,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
-    await this.prepareAllSpells();
+  onLoad(options) {
+    this.prepareAllSpells();
     this.updateMarkedSpells();
     this.loadShowingSpells(false);
   },

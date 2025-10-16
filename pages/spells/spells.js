@@ -1,6 +1,6 @@
 // pages/spells/spells.js
 const app = getApp();
-const db = wx.cloud.database();
+import allSpells from '../../spellData/allSpells';
 
 Page({
 
@@ -26,21 +26,21 @@ Page({
   /**
    * filteredSpells & ShowingSpells
    */
-  async prepareAllSpells() {
-    app.setProgressListener((progress) => {
-      this.setData({ progress });
-    });
+  prepareAllSpells() {
+    // app.setProgressListener((progress) => {
+    //   this.setData({ progress });
+    // });
     this.setData({
       loading: true,
     });
-    await app.loadSpells();
+    app.loadSpells();
     this.setData({
       loading: false,
     });
   },
   applyFilter() {
     const { searchValue, selectedFilters } = this.data;
-    const allSpells = app.globalData.spells;
+    // const allSpells = app.globalData.spells;
     const favorites = new Set(app.globalData.favorites);
     const filteredSpells = allSpells
       .filter(spell => {
@@ -133,8 +133,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
-    await this.prepareAllSpells();
+  onLoad(options) {
+    this.prepareAllSpells();
     this.applyFilter();
     this.loadShowingSpells(false);
   },  
@@ -149,12 +149,12 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  async onShow() {
+  onShow() {
     const tabbar = this.getTabBar();
     if (tabbar) {
       tabbar.setData({ value: 'spells' });
     }
-    await this.prepareAllSpells();
+    this.prepareAllSpells();
     this.applyFilter();
     this.loadShowingSpells(false);
   },
