@@ -1,0 +1,12 @@
+/* subpackages/spellData/dataloader/dataLoader.wxss */
+.page-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}
+.loading-containter {
+  flex: 1;
+  display: flex;
+  align-self: center;
+}

@@ -1,7 +1,13 @@
 {
   "pages": [
-    "pages/mine/mine",
-    "pages/spells/spells"
+    "pages/spells/spells",
+    "pages/mine/mine"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages/spellData",
+      "pages": ["dataLoader/dataLoader"]
+    }
   ],
   "lazyCodeLoading": "requiredComponents",
   "window": {

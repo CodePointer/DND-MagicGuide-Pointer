@@ -2,7 +2,6 @@
 import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 const VERSION = '0.2.0-beta';
 const app = getApp();
-import allSpells from '../../spellData/allSpells';
 
 Page({
 
@@ -14,6 +13,7 @@ Page({
     loading: false,
     progress: 0,
 
+    allSpells: [],
     markedSpells: [],
     showingSpells: [],
     pageSize: 32,
@@ -25,6 +25,7 @@ Page({
   },
 
   flushPage() {
+    this.prepareAllSpells();
     this.updateMarkedSpells();
     this.loadShowingSpells(false);
   },
@@ -33,16 +34,17 @@ Page({
    * markedSpells & showingSpells
    */
   prepareAllSpells() {
-    // app.setProgressListener((progress) => {
-    //   this.setData({ progress });
-    // });
-    this.setData({
-      loading: true,
-    });
-    app.loadSpells();
-    this.setData({
-      loading: false,
-    });
+    const cached = wx.getStorageSync('allSpells');
+    console.log('cached', cached);
+    if (!cached) {
+      console.log('navigate');
+      wx.navigateTo({
+        url: '/subpackages/spellData/dataLoader/dataLoader',
+      });
+    } else {
+      console.log('Loaded from cache', cached.length);
+      this.setData({ allSpells: cached });
+    }
   },
   updateMarkedSpells() {
     const favorites = new Set(app.globalData.favorites);

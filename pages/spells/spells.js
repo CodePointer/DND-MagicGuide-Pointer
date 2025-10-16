@@ -1,6 +1,6 @@
 // pages/spells/spells.js
 const app = getApp();
-import allSpells from '../../spellData/allSpells';
+// const allSpells = require('../../subpackages/allSpells.js').default;
 
 Page({
 
@@ -15,6 +15,7 @@ Page({
     searchValue: '',
     selectedFilters: null,
 
+    allSpells: [],
     filteredSpells: [],
     showingSpells: [],
     pageSize: 16,
@@ -23,24 +24,31 @@ Page({
     showPopup: false
   },
 
+  flushPage() {
+    this.prepareAllSpells();
+    this.applyFilter();
+    this.loadShowingSpells(false);
+  },
+
   /**
    * filteredSpells & ShowingSpells
    */
   prepareAllSpells() {
-    // app.setProgressListener((progress) => {
-    //   this.setData({ progress });
-    // });
-    this.setData({
-      loading: true,
-    });
-    app.loadSpells();
-    this.setData({
-      loading: false,
-    });
+    const cached = wx.getStorageSync('allSpells');
+    console.log('cached', cached);
+    if (!cached) {
+      console.log('navigate');
+      wx.navigateTo({
+        url: '/subpackages/spellData/dataLoader/dataLoader',
+      });
+    } else {
+      console.log('Loaded from cache', cached.length);
+      this.setData({ allSpells: cached });
+    }
   },
   applyFilter() {
     const { searchValue, selectedFilters } = this.data;
-    // const allSpells = app.globalData.spells;
+    const allSpells = this.data.allSpells;
     const favorites = new Set(app.globalData.favorites);
     const filteredSpells = allSpells
       .filter(spell => {
@@ -134,9 +142,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.prepareAllSpells();
-    this.applyFilter();
-    this.loadShowingSpells(false);
+    this.flushPage();
   },  
 
   /**
@@ -154,9 +160,7 @@ Page({
     if (tabbar) {
       tabbar.setData({ value: 'spells' });
     }
-    this.prepareAllSpells();
-    this.applyFilter();
-    this.loadShowingSpells(false);
+    this.flushPage();
   },
 
   /**

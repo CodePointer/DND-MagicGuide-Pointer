@@ -1,0 +1,6 @@
+<!--subpackages/spellData/dataloader/dataLoader.wxml-->
+<view class="page-container">
+  <view class="loading-containter">
+    <t-loading theme="{{ skylineRender ? 'spinner' : 'circular'}}" size="64rpx" text="正在加载法术..." class="large" />
+  </view>
+</view>
