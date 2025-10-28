@@ -35,14 +35,14 @@ Page({
    */
   prepareAllSpells() {
     const cached = wx.getStorageSync('allSpells');
-    console.log('cached', cached);
+    // console.log('cached', cached);
     if (!cached) {
-      console.log('navigate');
+      // console.log('navigate');
       wx.navigateTo({
         url: '/subpackages/spellData/dataLoader/dataLoader',
       });
     } else {
-      console.log('Loaded from cache', cached.length);
+      // console.log('Loaded from cache', cached.length);
       this.setData({ allSpells: cached });
     }
   },

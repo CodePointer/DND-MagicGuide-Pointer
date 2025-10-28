@@ -5,10 +5,20 @@ App({
   },
 
   onLaunch() {
+    this.prepareFavorite();
   },
 
   loadSpells() {
     // this.globalData.spells = allSpells;
+  },
+
+  prepareFavorite() {
+    const cached = wx.getStorageSync('userFavorite');
+    if (!cached) {
+      this.globalData.favorites = [];
+    } else {
+      this.globalData.favorites = cached;
+    }
   },
 
   updateFavorite(spellId, marked) {
@@ -26,5 +36,6 @@ App({
 
   updateFavorites(newFavorites) {
     this.globalData.favorites = newFavorites;
+    wx.setStorageSync('userFavorites', newFavorites);
   }
 })

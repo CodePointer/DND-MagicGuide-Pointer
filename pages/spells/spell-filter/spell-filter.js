@@ -69,7 +69,7 @@ Component({
     onSearchChange(e) {
       const value = e.detail.value;
       this.setData({ searchValue: value });
-      console.log(value);
+      // console.log(value);
       this.triggerFilterChange();
     },
     onFilterChange(e) {

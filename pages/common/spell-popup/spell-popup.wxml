@@ -5,7 +5,7 @@
   placement="right"
   custom-style="width: 70%;"
 >
-  <block wx:if="{{!spell}}"></block>
+  <block wx:if="{{!spell || !visible}}"></block>
   <block wx:else>
     <spell-detail 
       spellId="{{spell.spellId}}"

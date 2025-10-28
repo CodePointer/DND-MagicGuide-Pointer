@@ -35,21 +35,21 @@ Page({
    */
   prepareAllSpells() {
     const cached = wx.getStorageSync('allSpells');
-    console.log('cached', cached);
+    // console.log('cached', cached);
     if (!cached) {
       console.log('navigate');
       wx.navigateTo({
         url: '/subpackages/spellData/dataLoader/dataLoader',
       });
     } else {
-      console.log('Loaded from cache', cached.length);
+      // console.log('Loaded from cache', cached.length);
       this.setData({ allSpells: cached });
     }
   },
   updateMarkedSpells() {
     const favorites = new Set(app.globalData.favorites);
     this.setData({
-      markedSpells: allSpells.filter(opt => favorites.has(opt.spellId)).map(opt => {
+      markedSpells: this.data.allSpells.filter(opt => favorites.has(opt.spellId)).map(opt => {
         return { ...opt, marked: true };
       }),
     });
@@ -84,9 +84,11 @@ Page({
    * Import & Export
    */
   checkFavorites(spellIds) {
-    const allSpellIds = new Set(allSpells.map(spell => spell.spellId));
+    const allSpellIds = new Set(this.data.allSpells.map(spell => spell.spellId));
     const validSpellIds = spellIds.filter(id => allSpellIds.has(id));
-    app.updateFavorites(validSpellIds);
+    if (validSpellIds.length > 0) {
+      app.updateFavorites(validSpellIds);
+    }
     return validSpellIds;
   },
   getFavoritesStr() {
@@ -110,7 +112,9 @@ Page({
       fail: (err) => {
         this.showToast(`导入失败`, 'error');
       },
-      complete: (res) => this.flushPage(),
+      complete: (res) => {
+        this.flushPage();
+      },
     })
   },
   onExportFavoriates() {
@@ -140,11 +144,14 @@ Page({
         selectedSpell: spell,
         showPopup: true
       });
-      console.log(spell.description);
+      // console.log(spell.description);
     }
   },
   onClosePopup() {
-    this.setData({ showPopup: false });
+    this.setData({ 
+      selectedSpell: null,
+      showPopup: false
+    });
   },
 
   /**
