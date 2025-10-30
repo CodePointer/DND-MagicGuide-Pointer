@@ -9,8 +9,6 @@ Page({
    */
   data: {
     activateTab: 'spells',
-    loading: false,
-    progress: 0,
 
     searchValue: '',
     selectedFilters: null,
@@ -67,6 +65,7 @@ Page({
       })
       .map(spell => ({
         ...spell,
+        id: spell.spellId,
         marked: favorites.has(spell.spellId),
       }));
     this.setData({ filteredSpells: filteredSpells });
@@ -76,7 +75,7 @@ Page({
     const toSliceNum = Math.min(
       this.data.filteredSpells.length, 
       currentSpellNum + this.data.pageSize,
-    )
+    );
     this.setData({
       showingSpells: this.data.filteredSpells.slice(0, toSliceNum),
     });
@@ -114,8 +113,8 @@ Page({
    * Spell popup
    */
   onSpellCellClick(e) {
-    const { spellId } = e.detail;
-    const spell = this.data.showingSpells.find(s => s.spellId == spellId);
+    const { itemId } = e.detail;
+    const spell = this.data.showingSpells.find(s => s.spellId == itemId);
     if (spell) {
       this.setData({
         selectedSpell: spell,
@@ -134,8 +133,9 @@ Page({
     this.loadShowingSpells(true);
   },
   onSpellSwitchChange(e) {
-    const { spellId, marked } = e.detail;
-    this.changeFavoriate(spellId, marked);
+    console.log(e);
+    const { itemId, marked } = e.detail;
+    this.changeFavoriate(itemId, marked);
   },
 
   /**

@@ -1,14 +1,9 @@
+<!--pages/spell-list/spell-list.wxml-->
 <view class="spell-container">
   <spell-card
     wx:for="{{spells}}"
-    wx:key="_id"
-    spellId="{{item.spellId}}"
-    chineseName="{{item.chineseName}}"
-    englishName="{{item.englishName}}"
-    level="{{item.level}}"
-    concentration="{{item.concentration}}"
-    ritual="{{item.ritual}}"
-    marked="{{item.marked}}"
+    wx:key="id"
+    item="{{item}}"
     bind:spellCellClick="onSpellCellClick"
     bind:markedSwitchChange="onMarkSwitchChange"
   />

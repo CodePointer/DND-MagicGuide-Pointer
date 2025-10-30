@@ -1,0 +1,74 @@
+<!--pages/monsters/monster-filter/monster-filter.wxml-->
+<view class="search-bar">
+  <t-search 
+    value="{{searchValue}}" 
+    disabled="{{disabled}}"
+    placeholder="怪物中文/英文名" 
+    action="{{searchActionText}}" 
+    bind:change="onSearchChange" />
+</view>
+
+<view class="cr-bar">
+  <t-cell title="CR范围" hover note="{{crText}}" arrow bind:click="handleClick" />
+</view>
+
+<t-picker
+  visible="{{crVisible}}"
+  data-key="cr"
+  title="选择CR范围 {{crText}}"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  usingCustomNavbar
+  bind:visible-change="onPickerCancel"
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{crData}}"></t-picker-item>
+  <t-picker-item options="{{crData}}"></t-picker-item>
+</t-picker>
+
+<!-- <t-popup 
+  visible="{{visible}}"
+  bind:visible-change="onVisibleChange"
+  placement="right"
+  custom-stype="width: 20%;"
+>
+  <view class="popup-container">
+    <t-slider 
+      vertical range defaultValue="{{ [20, 60] }}"
+    />
+  </view>
+</t-popup> -->
+
+
+
+<view class="filter-bar">
+  <t-dropdown-menu>
+    <t-dropdown-item 
+      label="体型" optionsColumns="4" options="{{sizeOptions}}" multiple 
+      value="{{selectedFilters.size}}" data-key="size" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="类型" optionsColumns="4" options="{{typeOptions}}" multiple
+      value="{{selectedFilters.type}}" data-key="class" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="阵营" optionsColumns="3" options="{{alignmentOptions}}" multiple
+      value="{{selectedFilters.alignment}}" data-key="alignment" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="熟练" optionsColumns="4" options="{{pbOptions}}" multiple
+      value="{{selectedFilters.pb}}" data-key="pb" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+    <t-dropdown-item 
+      label="其它" optionsColumns="2" options="{{specialOptions}}" multiple
+      value="{{selectedFilters.special}}" data-key="special" disabled="{{disabled}}"
+      bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
+    />
+  </t-dropdown-menu>
+</view>

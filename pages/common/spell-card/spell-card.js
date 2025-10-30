@@ -5,13 +5,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    spellId: String,
-    chineseName: String,
-    englishName: String,
-    level: String,
-    concentration: Boolean,
-    ritual: Boolean,
-    marked: Boolean
+    item: {
+      type: Object,
+      value: {}
+    }
   },
 
   /**
@@ -23,14 +20,23 @@ Component({
   },
 
   observers: {
-    'chineseName, englishName': function(chineseName, englishName) {
+    item(spell) {
       this.setData({
-        title: `${chineseName} - ${englishName}`
-      })
-    },
-    'concentration, ritual': function(concentration, ritual) {
+        procSpell: {
+          id: spell.id || '[id]',
+          spellId: spell.spellId || '[spellId]',
+          chineseName: spell.chineseName || '[法术名称]',
+          englishName: spell.englishName || '[Name]',
+          level: spell.level || 0,
+          concentration: spell.concentration || false,
+          ritual: spell.ritual || false,
+          marked: spell.marked || false,
+          ...spell
+        }
+      });
       this.setData({
-        description: this.computeDescription(concentration, ritual)
+        title: `${spell.chineseName} - ${spell.englishName}`,
+        description: this.computeDescription(spell.concentration, spell.ritual)
       });
     }
   },
@@ -46,16 +52,16 @@ Component({
       return parts.join(' | ');
     },
     handleClick() {
-      this.triggerEvent('spellCellClick', {
-        spellId: this.data.spellId
+      this.triggerEvent('itemCellClick', {
+        itemId: this.data.procSpell.spellId
       });
     },
     stopTap() {
     },
     handleSwitchChange(e) {
       const newValue = e.detail.value
-      this.triggerEvent('markedSwitchChange', {
-        spellId: this.data.spellId,
+      this.triggerEvent('itemSwitchChange', {
+        itemId: this.data.procSpell.spellId,
         marked: newValue
       });
     }

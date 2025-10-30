@@ -14,6 +14,7 @@ Component({
     value: 'spells',
     list: [
       { value: 'spells', label: '法术列表', icon: 'book' },
+      { value: 'monsters', label: '怪物图鉴', icon: 'cat' },
       { value: 'mine', label: '我的收藏', icon: 'bookmark' },
     ],
   },

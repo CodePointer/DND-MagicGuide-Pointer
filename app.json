@@ -1,12 +1,21 @@
 {
   "pages": [
+    "pages/monsters/monsters",
     "pages/spells/spells",
     "pages/mine/mine"
   ],
   "subpackages": [
     {
       "root": "subpackages/spellData",
-      "pages": ["dataLoader/dataLoader"]
+      "pages": [
+        "dataLoader/dataLoader"
+      ]
+    },
+    {
+      "root": "subpackages/monsterData",
+      "pages": [
+        "dataLoader/dataLoader"
+      ]
     }
   ],
   "lazyCodeLoading": "requiredComponents",
@@ -19,6 +28,10 @@
       {
         "pagePath": "pages/spells/spells",
         "text": "法术列表"
+      },
+      {
+        "pagePath": "pages/monsters/monsters",
+        "text": "怪物图鉴"
       },
       {
         "pagePath": "pages/mine/mine",

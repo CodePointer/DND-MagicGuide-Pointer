@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-popup": "/miniprogram_npm/tdesign-miniprogram/popup/popup"
+  }
+}

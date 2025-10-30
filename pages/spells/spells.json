@@ -4,7 +4,10 @@
     "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
     "spell-filter": "./spell-filter/spell-filter",
     "spell-list": "/pages/common/spell-list/spell-list",
-    "spell-popup": "/pages/common/spell-popup/spell-popup",
+    "my-popup": "/pages/common/my-popup/my-popup",
+    "spell-detail": "/pages/common/spell-detail/spell-detail",
+    "card-list": "/pages/common/card-list/card-list",
+    "spell-card": "/pages/common/spell-card/spell-card",
     "custom-tab-bar": "/custom-tab-bar/index"
   }
 }

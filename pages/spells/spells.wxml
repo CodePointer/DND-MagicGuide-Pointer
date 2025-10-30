@@ -12,20 +12,27 @@
   </view>
 
   <view wx:else class="spell-list-container">
-    <spell-list 
+    <!-- <spell-list 
       spellTotalNumber="{{filteredSpells.length}}"
       spells="{{showingSpells}}"
       bind:spellCellClick="onSpellCellClick"
       bind:spellMarkChange="onSpellSwitchChange"
       bind:loadMoreSpell="onLoadMoreSpellClick"
+    /> -->
+    <card-list 
+      generic:card-item="spell-card"
+      label="法术"
+      totalNumber="{{filteredSpells.length}}"
+      items="{{showingSpells}}"
+      bind:itemCellClick="onSpellCellClick"
+      bind:itemMarkChange="onSpellSwitchChange"
+      bind:loadMoreItem="onLoadMoreSpellClick"
     />
   </view>
 
-  <spell-popup 
-    spell="{{selectedSpell}}"
-    visible="{{showPopup}}"
-    bind:close="onClosePopup"
-  />
+  <my-popup visible="{{showPopup}}" bind:close="onClosePopup">
+    <spell-detail wx:if="{{selectedSpell}}" spell="{{selectedSpell}}" />
+  </my-popup>
 </view>
 
 <custom-tab-bar />

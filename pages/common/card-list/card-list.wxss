@@ -1,0 +1,6 @@
+/* pages/common/card-list/card-list.wxss */
+.expand-container {
+  /* margin: var(--space-md); */
+  text-align: center;
+  align-items: center;
+}

@@ -1,0 +1,16 @@
+/* pages/monsters/monster-filter/monster-filter.wxss */
+.search-bar {
+  /* margin: var(--space-md); */
+}
+
+.filter-bar {
+  /* margin: var(--space-md); */
+}
+
+.popup-container{
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+}

@@ -22,11 +22,10 @@
   <t-footer
     text="https://github.com/CodePointer/DND-MagicGuide-Pointer"
   ></t-footer>
-  <spell-popup 
-    spell="{{selectedSpell}}"
-    visible="{{showPopup}}"
-    bind:close="onClosePopup"
-  />
+
+  <my-popup visible="{{showPopup}}" bind:close="onClosePopup">
+    <spell-detail wx:if="{{selectedSpell}}" spell="{{selectedSpell}}" />
+  </my-popup>
 </view>
 
 

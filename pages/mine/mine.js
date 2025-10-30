@@ -144,7 +144,6 @@ Page({
         selectedSpell: spell,
         showPopup: true
       });
-      // console.log(spell.description);
     }
   },
   onClosePopup() {

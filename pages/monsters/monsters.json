@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "大黄的怪物百科",
+  "usingComponents": {
+    "monster-filter": "./monster-filter/monster-filter"
+  }
+}

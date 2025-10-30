@@ -1,0 +1,9 @@
+<!--pages/monsters/monsters.wxml-->
+<view class="page-container">
+  <view class="monster-filter-container">
+    <monster-filter
+      disabled="{{loading}}"
+      bind:filterChange="onFilterChange"
+    />
+  </view>
+</view>

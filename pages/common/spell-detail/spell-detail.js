@@ -4,21 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    spellId: String,
-    chineseName: String,
-    englishName: String,
-    level: String,
-    school: String,
-    concentration: Boolean,
-    ritual: Boolean,
-    castingTime: String,
-    range: String,
-    duration: String,
-    components: Array,
-    materials: String,
-    description: String,
-    classes: Array,
-    source: String
+    spell: {
+      type: Object,
+      value: {}
+    },
   },
 
   /**
@@ -31,19 +20,31 @@ Component({
   },
 
   observers: {
-    'concentration, ritual': function(concentration, ritual) {
+    spell(spell) {
       this.setData({
-        keywordDesc: this.updateKeywordDesc(concentration, ritual)
-      });
-    },
-    'components, materials': function(components, materials) {
-      this.setData({
-        componentsDesc: this.updateComponentsDesc(components, materials)
-      });
-    },
-    'classes': function(classes) {
-      this.setData({
-        classDesc: classes.join('/')
+        procSpell: {
+          spellId: spell.spellId || '[spellId]',
+          chineseName: spell.chineseName || '[法术名称]',
+          englishName: spell.englishName || '[Name]',
+          level: spell.level || '[level]',
+          school: spell.school || '[school]',
+          concentration: spell.concentration || false,
+          ritual: spell.ritual || false,
+          castingTime: spell.castingTime || '[casting time]',
+          range: spell.range || '[range]',
+          duration: spell.duration || '[duration]',
+          components: spell.components || [],
+          materials: spell.materials || '',
+          description: spell.description || '[description]',
+          classes: spell.classes || [],
+          source: spell.source || '[source]',
+
+          keywordDesc: this.updateKeywordDesc(spell.concentration, spell.ritual),
+          componentsDesc: this.updateComponentsDesc(spell.components, spell.materials),
+          classDesc: (spell.classes || []).join('/'),
+
+          ...spell
+        }
       });
     }
   },

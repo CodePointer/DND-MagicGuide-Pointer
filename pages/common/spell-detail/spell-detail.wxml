@@ -3,24 +3,24 @@
   <view class="title-container">
     <view class="name-container">
       <view class="text-container">
-        <text class="chn-name">{{chineseName}}</text>
+        <text class="chn-name">{{procSpell.chineseName}}</text>
       </view>
       <view class="text-container">
-        <text class="eng-name">{{englishName}}</text>
+        <text class="eng-name">{{procSpell.englishName}}</text>
       </view>
     </view>
     <view class="level-container">
-      <t-icon name="numbers-{{level}}" size="60rpx"/>
+      <t-icon name="numbers-{{procSpell.level}}" size="60rpx"/>
     </view>
   </view>
 
   <view class="property-container">
     <view class="keyword-container">
       <view class="text-container">
-        <text class="keyword-text">{{school}}</text>
+        <text class="keyword-text">{{procSpell.school}}</text>
       </view>
       <view class="text-container">
-        <text class="keyword-text">{{keywordDesc}}</text>
+        <text class="keyword-text">{{procSpell.keywordDesc}}</text>
       </view>
     </view>
 
@@ -29,7 +29,7 @@
         <text class="property-label-text">施法时间：</text>
       </view>
       <view class="property-value-container">
-        <text class="property-value-text">{{castingTime}}</text>
+        <text class="property-value-text">{{procSpell.castingTime}}</text>
       </view>
     </view>
 
@@ -38,7 +38,7 @@
         <text class="property-label-text">施法距离：</text>
       </view>
       <view class="property-value-container">
-        <text class="property-value-text">{{range}}</text>
+        <text class="property-value-text">{{procSpell.range}}</text>
       </view>
     </view>
 
@@ -47,7 +47,7 @@
         <text class="property-label-text">持续时间：</text>
       </view>
       <view class="property-value-container">
-        <text class="property-value-text">{{duration}}</text>
+        <text class="property-value-text">{{procSpell.duration}}</text>
       </view>
     </view>
 
@@ -56,22 +56,22 @@
         <text class="property-label-text">法术成分：</text>
       </view>
       <view class="property-value-container">
-        <text class="property-value-text">{{componentsDesc}}</text>
+        <text class="property-value-text">{{procSpell.componentsDesc}}</text>
       </view>
     </view>
   </view>
 
   <scroll-view class="description-container" scroll-y>
-    <rich-text class="description-text" nodes="{{description}}"></rich-text>
+    <rich-text class="description-text" nodes="{{procSpell.description}}"></rich-text>
   </scroll-view>
 
   <view class="footnote-container">
     <view class="footnote-item-container">
       <view class="footnote-text-containter">
-        <text class="footnote-text">{{classDesc}}</text>
+        <text class="footnote-text">{{procSpell.classDesc}}</text>
       </view>
       <view class="footnote-text-containter">
-        <text class="footnote-text">{{source}}</text>
+        <text class="footnote-text">{{procSpell.source}}</text>
       </view>
     </view>
   </view>

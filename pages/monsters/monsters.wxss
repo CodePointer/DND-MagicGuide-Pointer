@@ -1,0 +1,7 @@
+/* pages/monsters/monsters.wxss */
+.page-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}

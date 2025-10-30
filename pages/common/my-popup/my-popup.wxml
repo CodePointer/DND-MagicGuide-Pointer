@@ -1,0 +1,9 @@
+<!--pages/common/my-popup/my-popup.wxml-->
+<t-popup
+  visible="{{visible}}"
+  bind:visible-change="onVisibleChange"
+  placement="right"
+  custom-style="width: 70%;"
+>
+  <slot></slot>
+</t-popup>
