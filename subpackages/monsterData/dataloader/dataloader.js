@@ -1,4 +1,4 @@
-// subpackages/monsterData/dataloader/dataloader.js
+// subpackages/monsterData/dataLoader/dataLoader.js
 Page({
 
   /**

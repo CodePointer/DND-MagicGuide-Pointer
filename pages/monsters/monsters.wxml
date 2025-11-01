@@ -6,4 +6,22 @@
       bind:filterChange="onFilterChange"
     />
   </view>
+
+  <view class="monster-list-container">
+    <card-list
+      generic:card-item="monster-card"
+      label="怪物"
+      totalNumber="{{filteredMonsters.length}}"
+      items="{{showingMonsters}}"
+      bind:itemCellClick="onMonsterCellClick"
+      bind:itemMarkChange="onMonsterSwitchChange"
+      bind:loadMoreItem="onLoadMoreMonsterClick"
+    />
+  </view>
+
+  <my-popup visible="{{showPopup}}" bind:close="onClosePopup">
+    <monster-detail wx:if="{{selectedMonster}}" monster="{{selectedMonster}}" />
+  </my-popup>
 </view>
+
+<custom-tab-bar />

@@ -1,6 +1,11 @@
 {
   "navigationBarTitleText": "大黄的怪物百科",
   "usingComponents": {
-    "monster-filter": "./monster-filter/monster-filter"
+    "monster-filter": "./monster-filter/monster-filter",
+    "card-list": "../common/card-list/card-list",
+    "monster-card": "../common/monster-card/monster-card",
+    "my-popup": "/pages/common/my-popup/my-popup",
+    "monster-detail": "/pages/common/monster-detail/monster-detail",
+    "custom-tab-bar": "/custom-tab-bar/index"
   }
 }

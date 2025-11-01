@@ -1,0 +1,57 @@
+<!--pages/common/monster-detail/monster-detail.wxml-->
+<view class="monster-detail-container">
+  <view class="title-container">
+    <view class="text-container">
+      <text class="monster-name">{{titleDesc}}</text>
+    </view>
+  </view>
+
+  <view class="sub-title-container">
+    <view class="text-container">
+      <text class="sub-title-text">{{subTitleDesc}}</text>
+    </view>
+  </view>
+
+  <view class="ability-table-col-container">
+    <view class="ability-table-row-container ability-table-row-container-title">
+      <view class="ability-table-cell-container" wx:for="{{tableInfo.title}}" wx:key="id">
+        <text class="table-title">{{item}}</text>
+      </view>
+    </view>
+    <view class="ability-table-row-container">
+      <view class="ability-table-cell-container" wx:for="{{tableInfo.scores}}" wx:key="id">
+        <text class="table-scores">{{item}}</text>
+      </view>
+    </view>
+    <view class="ability-table-row-container">
+      <view class="ability-table-cell-container" wx:for="{{tableInfo.mod}}" wx:key="id">
+        <text class="table-mod">{{item}}</text>
+      </view>
+    </view>
+    <view class="ability-table-row-container">
+      <view class="ability-table-cell-container" wx:for="{{tableInfo.save}}" wx:key="id">
+        <text class="table-save">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="property-container">
+    
+  </view>
+
+  <scroll-view class="description-container" scroll-y>
+    <rich-text class="description-text" nodes="{{procSpell.description}}"></rich-text>
+  </scroll-view>
+
+  <view class="footnote-container">
+    <view class="footnote-item-container">
+      <view class="footnote-text-containter">
+        <text class="footnote-text">{{footNoteDesc}}</text>
+      </view>
+      <view class="footnote-text-containter">
+        <text class="footnote-text">{{procMonster.source}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>

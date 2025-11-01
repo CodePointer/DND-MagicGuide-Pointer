@@ -1,4 +1,4 @@
-<!--subpackages/monsterData/dataloader/dataloader.wxml-->
+<!--subpackages/monsterData/dataLoader/dataLoader.wxml-->
 <view class="page-container">
   <view class="loading-containter">
     <t-loading theme="{{ skylineRender ? 'spinner' : 'circular'}}" size="64rpx" text="正在加载怪物数据..." class="large" />

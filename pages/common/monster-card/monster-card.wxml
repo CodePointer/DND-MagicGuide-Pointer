@@ -1,0 +1,17 @@
+<!--pages/common/monster-card/monster-card.wxml-->
+<t-cell
+  title="{{title}}"
+  left-icon="numbers-{{proficienciesLevel}}"
+  description="{{description}}"
+  hover
+  arrow 
+  bind:click="handleClick"
+>
+  <t-switch
+    value="{{procMonster.marked}}"
+    icon="{{['bookmark-filled', 'bookmark']}}"
+    slot="note"
+    catch:tap="stopTap"
+    bind:change="handleSwitchChange"
+  />
+</t-cell>

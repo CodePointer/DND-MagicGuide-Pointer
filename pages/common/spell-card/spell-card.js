@@ -23,7 +23,7 @@ Component({
     item(spell) {
       this.setData({
         procSpell: {
-          id: spell.id || '[id]',
+          id: spell.spellId || '[id]',
           spellId: spell.spellId || '[spellId]',
           chineseName: spell.chineseName || '[法术名称]',
           englishName: spell.englishName || '[Name]',

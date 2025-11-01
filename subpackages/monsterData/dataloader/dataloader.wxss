@@ -1,4 +1,4 @@
-/* subpackages/monsterData/dataloader/dataloader.wxss */
+/* subpackages/monsterData/dataLoader/dataLoader.wxss */
 .page-container {
   margin: var(--space-md);
   display: flex;

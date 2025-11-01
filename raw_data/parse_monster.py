@@ -55,15 +55,31 @@ class Monster:
 
         self.sections = []  # List[ActionSection]
 
+    def _snake_to_camel(self, snake_str):
+        """Convert snake_case to camelCase"""
+        components = snake_str.split('_')
+        return components[0] + ''.join(word.capitalize() for word in components[1:])
+
     def to_dict(self):
-        data = self.__dict__.copy()
-        data['strength'] = self.strength.__dict__
-        data['dexterity'] = self.dexterity.__dict__
-        data['constitution'] = self.constitution.__dict__
-        data['intelligence'] = self.intelligence.__dict__
-        data['wisdom'] = self.wisdom.__dict__
-        data['charisma'] = self.charisma.__dict__
-        data['sections'] = [section.__dict__ for section in self.sections]
+        data = {}
+        # Convert snake_case to camelCase for all attributes
+        for key, value in self.__dict__.items():
+            camel_key = self._snake_to_camel(key)
+            data[camel_key] = value
+        
+        # Handle ability objects
+        data['strength'] = {self._snake_to_camel(k): v for k, v in self.strength.__dict__.items()}
+        data['dexterity'] = {self._snake_to_camel(k): v for k, v in self.dexterity.__dict__.items()}
+        data['constitution'] = {self._snake_to_camel(k): v for k, v in self.constitution.__dict__.items()}
+        data['intelligence'] = {self._snake_to_camel(k): v for k, v in self.intelligence.__dict__.items()}
+        data['wisdom'] = {self._snake_to_camel(k): v for k, v in self.wisdom.__dict__.items()}
+        data['charisma'] = {self._snake_to_camel(k): v for k, v in self.charisma.__dict__.items()}
+        
+        # Handle sections
+        data['sections'] = [
+            {self._snake_to_camel(k): v for k, v in section.__dict__.items()}
+            for section in self.sections
+        ]
         return data
     
     def to_json(self):

@@ -12,13 +12,6 @@
   </view>
 
   <view wx:else class="spell-list-container">
-    <!-- <spell-list 
-      spellTotalNumber="{{filteredSpells.length}}"
-      spells="{{showingSpells}}"
-      bind:spellCellClick="onSpellCellClick"
-      bind:spellMarkChange="onSpellSwitchChange"
-      bind:loadMoreSpell="onLoadMoreSpellClick"
-    /> -->
     <card-list 
       generic:card-item="spell-card"
       label="法术"

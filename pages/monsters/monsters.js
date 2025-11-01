@@ -22,7 +22,9 @@ Page({
   },
 
   flushPage() {
-
+    this.prepareAllMonsters();
+    this.applyFilter();
+    this.loadShowingMonsters(false);
   },
 
   /**
@@ -79,10 +81,41 @@ Page({
   },
 
   /**
+   * Monster popup
+   */
+  onMonsterCellClick(e) {
+    const { itemId } = e.detail;
+    const monster = this.data.showingMonsters.find(m => m.monsterId == itemId);
+    if (monster) {
+      this.setData({
+        selectedMonster: monster,
+        showPopup: true
+      });
+    }
+  },
+  onClosePopup() {
+    this.setData({
+      showPopup: false,
+      selectedMonster: null
+    });
+  },
+
+  /**
+   * Monster list
+   */
+  onLoadMoreMonsterClick(e) {
+    this.loadShowingMonsters(true);
+  },
+  onMonsterSwitchChange(e) {
+    const { itemId, marked } = e.detail;
+    this.changeFavorite(itemId, marked);
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.flushPage();
   },
 
   /**
@@ -121,14 +154,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    
   },
 
   /**

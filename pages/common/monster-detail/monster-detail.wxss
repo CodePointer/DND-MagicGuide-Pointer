@@ -1,0 +1,62 @@
+/* pages/common/monster-detail/monster-detail.wxss */
+
+/* Title Section */
+.monster-detail-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  gap: var(--space-sm);
+}
+.title-container {
+  display: flex;
+  align-items: center;
+}
+.monster-name {
+  font-size: var(--font-size-title);
+}
+.sub-title-text {
+  font-size: var(--font-size-bodysmall);
+  color: var(--color-text-secondary);
+}
+
+.ability-table-col-container {
+  display: flex;
+  flex-direction: column;
+  /* border-radius: 16rpx; */
+  /* background-color: var(--color-bg); */
+}
+.ability-table-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ability-table-row-container-title {
+  border-bottom: 1px solid;
+}
+.ability-table-cell-container {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.table-title, .table-scores {
+  font-size: var(--font-size-bodysmall);
+  font-weight: var(--font-weight-bold);
+}
+.table-mod, .table-save {
+  font-size: var(--font-size-bodysmall);
+}
+
+/* FootNote Section */
+.footnote-container {
+  margin-top: auto;
+}
+.footnote-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footnote-text {
+  font-size: var(--font-size-bodysmall);
+  color: var(--color-text-secondary);
+}
