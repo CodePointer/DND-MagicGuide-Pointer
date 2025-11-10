@@ -35,12 +35,31 @@
     </view>
   </view>
 
+  <view class="property-container row-based-container">
+    <view class="property-pair-container" wx:for="{{shortPropertyPair}}" wx:key="title">
+      <text class="property-title">{{item.title}}</text>
+      <text class="property-desc">{{item.desc}}</text>
+    </view>
+  </view>
+
   <view class="property-container">
-    
+    <view class="property-pair-container" wx:for="{{propertyPair}}" wx:key="title">
+      <view>
+        <text class="property-title">{{item.title}}: </text>
+        <text class="property-desc">{{item.desc}}</text>
+      </view>
+    </view>
   </view>
 
   <scroll-view class="description-container" scroll-y>
-    <rich-text class="description-text" nodes="{{procSpell.description}}"></rich-text>
+    <view class="section-container" wx:for="{{procMonster.sections}}" wx:key="id">
+      <view class="section-title-container">
+        <text class="section-title">{{item.title}}</text>
+      </view>
+      <view class="section-content-container">
+        <rich-text class="section-content" nodes="{{item.content}}"></rich-text>
+      </view>
+    </view>
   </scroll-view>
 
   <view class="footnote-container">

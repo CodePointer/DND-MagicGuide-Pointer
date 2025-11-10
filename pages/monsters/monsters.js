@@ -42,13 +42,35 @@ Page({
   },
   applyFilter() {
     const { searchValue, selectedFilters } = this.data;
+    const parseCR = (crString) => {
+      if (crString.includes('/')) {
+        const [num, den] = crString.split('/').map(parseFloat);
+        return num / den;
+      } else {
+        return parseFloat(crString);
+      }
+    };
+
     const allMonsters = this.data.allMonsters;
     const filteredMonsters = allMonsters
       .filter(monster => {
-        return true;
+        const matchName = searchValue == '' ||
+          monster.chineseName.includes(searchValue) ||
+          monster.englishName.toLowerCase().includes(searchValue.toLowerCase());
+        if (selectedFilters == null) return matchName;
+        const matchSize = monster.size.some(size => selectedFilters.size.includes(size));
+        const matchType = selectedFilters.type.includes(monster.type);
+        const matchAlignment = selectedFilters.alignment.includes(monster.alignment);
+        const matchPb = selectedFilters.pb.includes(monster.proficiencies);
+        const matchCr = parseCR(monster.challengeRating) >= selectedFilters.crValue[0] &&
+          parseCR(monster.challengeRating) <= selectedFilters.crValue[1];
+        const matchSwarm = !selectedFilters.special.includes('0') || monster.swarm;
+        return matchName && matchSize && matchType &&
+          matchAlignment && matchPb && matchCr && matchSwarm;
       })
       .map(monster => ({
         ...monster,
+        id: monster.monsterId,
         marked: false,
       }));
     this.setData({ filteredMonsters });

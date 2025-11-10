@@ -20,6 +20,7 @@
   color: var(--color-text-secondary);
 }
 
+/* Table Section */
 .ability-table-col-container {
   display: flex;
   flex-direction: column;
@@ -46,6 +47,43 @@
 .table-mod, .table-save {
   font-size: var(--font-size-bodysmall);
 }
+
+/* Property Section */
+.row-based-container {
+  display: flex;
+  justify-content: space-between;
+}
+.property-pair-container {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+.property-title {
+  font-size: var(--font-size-bodysmall);
+  font-weight: var(--font-weight-bold);
+}
+.property-desc {
+  font-size: var(--font-size-bodysmall);
+}
+
+/* Description Section */
+.description-container {
+  flex: 1;
+  min-height: 0;
+  align-self: center;
+  overflow-y: hidden;
+  display: flex;
+  /* align-items: center; */
+}
+.section-title-container {
+  border-bottom: 1px solid;
+  text-align: right;
+}
+.section-title {
+  font-size: var(--font-size-bodysmall);
+  font-weight: var(--font-weight-bold);
+}
+
 
 /* FootNote Section */
 .footnote-container {

@@ -52,7 +52,7 @@
     />
     <t-dropdown-item 
       label="类型" optionsColumns="4" options="{{typeOptions}}" multiple
-      value="{{selectedFilters.type}}" data-key="class" disabled="{{disabled}}"
+      value="{{selectedFilters.type}}" data-key="type" disabled="{{disabled}}"
       bind:change="onFilterChange" bind:confirm="onFilterConfirm" bind:close="onFilterConfirm" 
     />
     <t-dropdown-item 

@@ -11,10 +11,10 @@ page {
   --color-border: #e0d6cf;
 
   /* font */
-  --font-size-title: 48rpx;
-  --font-size-subtitle: 40rpx;
-  --font-size-body: 36rpx;
-  --font-size-bodysmall: 32rpx;
+  --font-size-title: 44rpx;
+  --font-size-subtitle: 36rpx;
+  --font-size-body: 32rpx;
+  --font-size-bodysmall: 28rpx;
   --font-weight-bold: 600;
 
   --space-sm: 16rpx;

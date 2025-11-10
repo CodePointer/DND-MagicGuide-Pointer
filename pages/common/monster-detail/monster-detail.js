@@ -1,13 +1,27 @@
 // pages/common/monster-detail/monster-detail.js
-const abilityKeys = [
-  'strength', 'dexterity', 
-  'constitution', 'intelligence',
-  'wisdom', 'charisma'
-];
-const abilityName = [
-  '力量', '敏捷', '体质', 
-  '智力', '感知', '魅力'
-];
+const abilityDicts = {
+  'strength': '力量',
+  'dexterity': '敏捷',
+  'constitution': '体质',
+  'intelligence': '智力',
+  'wisdom': '感知',
+  'charisma': '魅力'
+};
+const shortPropertyDicts = {
+  // 'ac': 'AC',
+  'hp': 'HP',
+  'initiative': '先攻'
+};
+const propertyDicts = {
+  'speed': '速度',
+  'skills': '技能',
+  'damageVulnerabilities': '伤害易伤',
+  'damageResistances': '伤害抗性',
+  'damageImmunities': '伤害免疫',
+  'senses': '感知',
+  'languages': '语言',
+  'equipment': '装备'
+};
 
 Component({
 
@@ -33,6 +47,7 @@ Component({
       mod: [],
       save: []
     },
+    shortPropertyPair: [],
     propertyPair: [],
     sectionPair: [],
     footNoteDesc: ''
@@ -40,12 +55,20 @@ Component({
 
   observers: {
     monster(monster) {
-      const abilityBlock = abilityKeys.reduce((acc, key) => {
+      const abilityBlock = Object.keys(abilityDicts).reduce((acc, key) => {
         acc[key] = {
           scores: monster[key]?.scores || 'xx',
-          mod: monster[key]?.scores || '+x',
-          save: monster[key].save || '+x'
+          mod: monster[key]?.mod || '+x',
+          save: monster[key]?.save || '+x'
         };
+        return acc;
+      }, {});
+      const shortPropertyBlock = Object.keys(shortPropertyDicts).reduce((acc, key) => {
+        acc[key] = monster[key] || `[${shortPropertyDicts[key]}]`;
+        return acc;
+      }, {});
+      const propertyBlock = Object.keys(propertyDicts).reduce((acc, key) => {
+        acc[key] = monster[key] || `[${propertyDicts[key]}]`;
         return acc;
       }, {});
       this.setData({
@@ -61,18 +84,10 @@ Component({
           type: monster.type || '[type]',
           subType: monster.subType || '',
           alignment: monster.alignment || '[alignment]',
-          ac: monster.ac || '[ac]',
-          hp: monster.hp || '[hp]',
-          speed: monster.speed || '[speed]',
-          initiative: monster.initiative || '[initiative]',
           ...abilityBlock,
-          skills: monster.skills || '',
-          damageVulnerabilities: monster.damageVulnerabilities || '',
-          damageResistances: monster.damageResistances || '',
-          damageImmunities: monster.damageImmunities || '',
-          equipment: monster.equipment || '',
-          senses: monster.senses || '',
-          languages: monster.languages || '',
+          ...shortPropertyBlock,
+          ...propertyBlock,
+          ac: monster.ac || '[AC]',
           challengeRating: monster.challengeRating || '[CR]',
           proficiencies: monster.proficiencies || '',
           sections: [
@@ -86,6 +101,7 @@ Component({
       });
       this.processDesc();
       this.processTable();
+      this.processProperty();
     }
   },
 
@@ -100,19 +116,36 @@ Component({
       this.setData({
         titleDesc: `${monster.chineseName} (${monster.englishName})`,
         subTitleDesc: `${sizeAndType}${swarmType}, ${monster.alignment}`,
-        footNoteDesc: `CR ${monster.challengeRating} | PB ${monster.proficiencies}`
+        footNoteDesc: `AC ${monster.ac} | CR ${monster.challengeRating} | PB ${monster.proficiencies}`
       });
     },
     processTable() {
       const monster = this.data.procMonster;
       this.setData({
         tableInfo: {
-          title: abilityName,
-          scores: abilityKeys.map((key, _) => monster[key].scores),
-          mod: abilityKeys.map((key, _) => monster[key].mod),
-          save: abilityKeys.map((key, _) => monster[key].save)
+          title: Object.values(abilityDicts),
+          scores: Object.keys(abilityDicts).map((key, _) => monster[key].scores),
+          mod: Object.keys(abilityDicts).map((key, _) => monster[key].mod),
+          save: Object.keys(abilityDicts).map((key, _) => monster[key].save)
         }
       })
+    },
+    processProperty() {
+      const monster = this.data.procMonster;
+      this.setData({
+        shortPropertyPair: Object.keys(shortPropertyDicts).map((key) => {
+          return {
+            title: shortPropertyDicts[key],
+            desc: monster[key]
+          };
+        }),
+        propertyPair: Object.keys(propertyDicts).map((key) => {
+          return {
+            title: propertyDicts[key],
+            desc: monster[key]
+          };
+        }).filter(item => item.desc && item.desc.length > 0)
+      });
     }
   }
 })

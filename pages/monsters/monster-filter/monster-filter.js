@@ -42,7 +42,7 @@ const specialOptions = ['仅看集群'].map((val, i) => ({
 }));
 const crOptionsRange = new Array(25).fill(null).map((_, i) => ({
   label: `${i + 1}`,
-  value: i
+  value: i + 1
 }));
 
 
@@ -153,6 +153,7 @@ Component({
           crText: `[${label[0]} - ${label[1]}]`
         });
       }
+      this.triggerFilterChange();
     },
     onPickerCancel(e) {
       const crValue = this.data.selectedFilters.crValue;
