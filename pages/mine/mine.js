@@ -10,8 +10,7 @@ import {
   processSpellData, 
   processMonsterData 
 } from '../../utils/dataprocessor';
-
-const VERSION = '0.2.0-beta';
+import { VERSION } from '../../config';
 const app = getApp();
 
 Page({
@@ -33,7 +32,7 @@ Page({
     selectedObjectType: null,
     showPopup: false,
 
-    version: VERSION
+    footNoteText: `v${VERSION} | 谢谢Star喵`
   },
 
   allSpellsMap: {},
@@ -44,8 +43,6 @@ Page({
   flushPage() {
     this.prepareAll();
     this.updateMarkedAll();
-    // this.loadShowingSpells(false);
-    // this.loadShowingMonsters(false);
   },
 
   /**
@@ -118,55 +115,6 @@ Page({
   },
 
   /**
-   * Change monster/spell favorite
-   */
-  // changeFavoriate(key, id, marked) {
-  //   // Helper function to update marked status locally
-  //   const updateMarkedStatusLocally = (arrName) => {
-  //     const idx = this.data[arrName].findIndex(sp => sp.spellId === spellId);
-  //     if (idx >= 0) {
-  //       this.setData({
-  //         [`${arrName}[${idx}].marked`]: marked,
-  //       });
-  //     };
-  //   };
-  //   // 1. Update favorites
-  //   app.updateFavorite(key, id, marked);
-  //   // 2. Update locally
-  //   if (key === 'monsters') {
-  //     updateMarkedStatusLocally('markedMonsters');
-  //     updateMarkedStatusLocally('showingMonsters');
-  //   } else if (key === 'spells') {
-  //     updateMarkedStatusLocally('markedSpells');
-  //     updateMarkedStatusLocally('showingSpells');
-  //   }
-  // },
-
-  /**
-   * loadMoreMonsters & loadMoreSpells
-   */
-  // loadShowingSpells(appendFlag) {
-  //   const currentSpellNum = appendFlag ? this.data.showingSpells.length : 0;
-  //   const toSliceNum = Math.min(
-  //     this.data.markedSpells.length, 
-  //     currentSpellNum + this.data.pageSize,
-  //   )
-  //   this.setData({
-  //     showingSpells: this.data.markedSpells.slice(0, toSliceNum),
-  //   });
-  // },
-  // loadShowingMonsters(appendFlag) {
-  //   const currentMonsterNum = appendFlag ? this.data.showingMonsters.length : 0;
-  //   const toSliceNum = Math.min(
-  //     this.data.markedMonsters.length, 
-  //     currentMonsterNum + this.data.pageSizeMonsters,
-  //   )
-  //   this.setData({
-  //     showingMonsters: this.data.markedMonsters.slice(0, toSliceNum),
-  //   });
-  // },
-
-  /**
    * Import & Export
    */
   onExportFavoriates() {
@@ -199,18 +147,6 @@ Page({
         this.flushPage();
       },
     })
-  },
-  checkFavorites(spellIds) {
-    const allSpellIds = new Set(this.data.allSpells.map(spell => spell.spellId));
-    const validSpellIds = spellIds.filter(id => allSpellIds.has(id));
-    if (validSpellIds.length > 0) {
-      app.updateFavoriteAll({
-        spells: validSpellIds,
-        monsters: [],
-        items: [],
-      });
-    }
-    return validSpellIds;
   },
   showToast(message, theme) {
     return Toast({
@@ -264,12 +200,7 @@ Page({
     }
   },
   onLoadMoreClick(e) {
-    // const { objectType } = e.detail;
-    // if (objectType === 'monster') {
-    //   this.loadShowingMonsters(true);
-    // } else if (objectType === 'spell') {
-    //   this.loadShowingSpells(true);
-    // }
+    
   },
   onClosePopup() {
     this.setData({ 
@@ -285,8 +216,6 @@ Page({
   onLoad(options) {
     this.prepareAll();
     this.updateMarkedAll();
-    // this.loadShowingSpells(false);
-    // this.loadShowingMonsters(false);
   },
 
   /**
@@ -306,8 +235,6 @@ Page({
     }
     await this.prepareAll();
     this.updateMarkedAll();
-    // this.loadShowingSpells(false);
-    // this.loadShowingMonsters(false);
   },
 
   /**

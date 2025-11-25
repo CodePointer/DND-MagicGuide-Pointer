@@ -1,5 +1,5 @@
 <!--pages/common/tabbar/tabbar.wxml-->
-<view class="tabbar-wrapper">
+<view class="tabbar-wrapper page">
   <t-tab-bar t-class="t-tab-bar" value="{{value}}" bindchange="onChange" split="{{false}}" theme="tag">
     <t-tab-bar-item wx:for="{{list}}" wx:key="value" value="{{item.value}}" icon="{{item.icon}}">
       {{item.label}}

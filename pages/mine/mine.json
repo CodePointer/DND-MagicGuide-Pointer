@@ -7,7 +7,6 @@
     "t-collapse": "/miniprogram_npm/tdesign-miniprogram/collapse/collapse",
     "t-collapse-panel": "/miniprogram_npm/tdesign-miniprogram/collapse-panel/collapse-panel",
     "favorate-io": "./favorate-io/favorate-io",
-    "spell-list": "/pages/common/spell-list/spell-list",
     "card-list": "/pages/common/card-list/card-list",
     "spell-card": "/pages/common/spell-card/spell-card",
     "monster-card": "/pages/common/monster-card/monster-card",

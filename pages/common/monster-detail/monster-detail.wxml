@@ -42,16 +42,16 @@
     </view>
   </view>
 
-  <view class="property-container">
-    <view class="property-pair-container" wx:for="{{propertyPair}}" wx:key="title">
-      <view>
-        <text class="property-title">{{item.title}}: </text>
-        <text class="property-desc">{{item.desc}}</text>
+  <scroll-view class="description-container" scroll-y>
+    <view class="property-container">
+      <view class="property-pair-container" wx:for="{{propertyPair}}" wx:key="title">
+        <view>
+          <text class="property-title">{{item.title}}: </text>
+          <text class="property-desc">{{item.desc}}</text>
+        </view>
       </view>
     </view>
-  </view>
 
-  <scroll-view class="description-container" scroll-y>
     <view class="section-container" wx:for="{{procMonster.sections}}" wx:key="id">
       <view class="section-title-container">
         <text class="section-title">{{item.title}}</text>

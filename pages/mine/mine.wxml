@@ -15,7 +15,6 @@
       expandIcon
     >
       <t-collapse-panel 
-        class="collapse-panel"
         header="法术" 
         value="{{0}}" 
         placement="down"
@@ -70,7 +69,7 @@
   
 
   <t-footer
-    text="© 2025 DND Magic Guide | v{{version}}"
+    text="{{footNoteText}}"
   ></t-footer>
   <t-footer
     text="https://github.com/CodePointer/DND-MagicGuide-Pointer"

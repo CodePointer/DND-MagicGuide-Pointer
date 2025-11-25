@@ -21,6 +21,3 @@
   align-items: center;
   flex-wrap: wrap;
 }
-/* :root {
-  --td-collapse-content-padding: 0;
-} */

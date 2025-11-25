@@ -12,10 +12,7 @@ Page({
 
     searchValue: '',
     selectedFilters: null,
-    // allSpells: [],
     filteredSpellsInfo: [],
-    // showingSpells: [],
-    // pageSize: 16,
 
     selectedSpell: null,
     showPopup: false
@@ -27,7 +24,6 @@ Page({
   flushPage() {
     this.prepareAllSpells();
     this.applyFilter();
-    // this.loadShowingSpells(false);
   },
 
   /**
@@ -71,16 +67,6 @@ Page({
       }));
     this.setData({ filteredSpellsInfo: filteredSpellsInfo });
   },
-  // loadShowingSpells(appendFlag) {
-  //   const currentSpellNum = appendFlag ? this.data.showingSpells.length : 0;
-  //   const toSliceNum = Math.min(
-  //     this.data.filteredSpells.length, 
-  //     currentSpellNum + this.data.pageSize,
-  //   );
-  //   this.setData({
-  //     showingSpells: this.data.filteredSpells.slice(0, toSliceNum),
-  //   });
-  // },
 
   /**
    * Spell-filter
@@ -92,7 +78,6 @@ Page({
       selectedFilters: selectedFilters,
     });
     this.applyFilter();
-    // this.loadShowingSpells(false);
   },
 
   /**
@@ -116,7 +101,7 @@ Page({
    * Spell list
    */
   onLoadMoreSpellClick(e) {
-    // this.loadShowingSpells(true);
+    
   },
   onSpellSwitchChange(e) {
     const { itemId, marked } = e.detail;

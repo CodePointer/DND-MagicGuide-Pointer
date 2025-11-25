@@ -3,7 +3,6 @@
   "usingComponents": {
     "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
     "spell-filter": "./spell-filter/spell-filter",
-    "spell-list": "/pages/common/spell-list/spell-list",
     "my-popup": "/pages/common/my-popup/my-popup",
     "spell-detail": "/pages/common/spell-detail/spell-detail",
     "card-list": "/pages/common/card-list/card-list",

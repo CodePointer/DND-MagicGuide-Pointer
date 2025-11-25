@@ -1,9 +1,9 @@
 {
   "entryPagePath": "pages/spells/spells",
   "pages": [
-    "pages/mine/mine",
+    "pages/spells/spells",
     "pages/monsters/monsters",
-    "pages/spells/spells"
+    "pages/mine/mine"
   ],
   "subpackages": [
     {
@@ -23,6 +23,7 @@
   "window": {
     "navigationBarTitleText": "大黄的奥术指南"
   },
+  "darkmode": true,
   "tabBar": {
     "custom": true,
     "list": [

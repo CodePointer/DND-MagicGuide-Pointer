@@ -6,6 +6,7 @@ const DEFAULT_FAVORITES = {
   monsters: [],
   items: [],
 };
+let state = null;
 
 
 function loadState() {
@@ -13,16 +14,24 @@ function loadState() {
   if (!cached) {
     return DEFAULT_FAVORITES;
   } else {
+    if (!cached.hasOwnProperty('spells') || !cached.hasOwnProperty('monsters') || !cached.hasOwnProperty('items')) {
+      return DEFAULT_FAVORITES;
+    }
     return cached;
   }
 }
 
 
-let state = loadState();
-
-
 function saveState() {
   wx.setStorageSync(STORAGE_KEY, state);
+}
+
+
+function initialize() {
+  if (state === null) {
+    state = loadState();
+  }
+  // console.log('Favorites initialized:', state);
 }
 
 
@@ -60,6 +69,8 @@ function changeFavorite(type, id, marked) {
 
 
 function exportFavorites() {
+  console.log('exportFavorites', state);
+  console.log('exportFavorites string', JSON.stringify(state));
   return JSON.stringify(state);
 }
 
@@ -68,6 +79,9 @@ function importFavorites(favStr) {
   if (!favStr) return false;
   try {
     const newFavorites = JSON.parse(favStr);
+    if (!newFavorites.hasOwnProperty('spells') || !newFavorites.hasOwnProperty('monsters') || !newFavorites.hasOwnProperty('items')) {
+      return false;
+    }
     state.spells = Array.isArray(newFavorites.spells) ? newFavorites.spells : [];
     state.monsters = Array.isArray(newFavorites.monsters) ? newFavorites.monsters : [];
     state.items = Array.isArray(newFavorites.items) ? newFavorites.items : [];
@@ -81,6 +95,7 @@ function importFavorites(favStr) {
 
 
 module.exports = {
+  initialize,
   getFavorites,
   getAllFavorites,
   isFavorite,
