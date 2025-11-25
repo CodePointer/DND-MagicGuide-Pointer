@@ -2,7 +2,9 @@
 import Toast from '../../miniprogram_npm/tdesign-miniprogram/toast/index';
 import {
   changeFavorite, 
-  getFavorites 
+  exportFavorites,
+  importFavorites,
+  getFavorites,
 } from '../../utils/favorites';
 import { 
   processSpellData, 
@@ -167,6 +169,37 @@ Page({
   /**
    * Import & Export
    */
+  onExportFavoriates() {
+    wx.setClipboardData({
+      data: exportFavorites(),
+      success: (res) => {
+        wx.hideToast();
+        this.showToast(`成功导出至剪贴板`, 'success');
+      },
+      fail: (err) => {
+        this.showToast(`导出失败`, 'error');
+      },
+      complete: (res) => this.flushPage(),
+    });
+  },
+  onImportFavoriates() {
+    wx.getClipboardData({
+      success: (res) => {
+        res = importFavorites(res.data);
+        if (!res) {
+          this.showToast(`导入失败，剪贴板数据格式错误`, 'error');
+          return;
+        }
+        this.showToast(`已从剪贴板导入`, 'success');
+      },
+      fail: (err) => {
+        this.showToast(`导入失败`, 'error');
+      },
+      complete: (res) => {
+        this.flushPage();
+      },
+    })
+  },
   checkFavorites(spellIds) {
     const allSpellIds = new Set(this.data.allSpells.map(spell => spell.spellId));
     const validSpellIds = spellIds.filter(id => allSpellIds.has(id));
@@ -179,9 +212,6 @@ Page({
     }
     return validSpellIds;
   },
-  getFavoritesStr() {
-    return app.globalData.favorites.join(',');
-  },
   showToast(message, theme) {
     return Toast({
       context: this,
@@ -189,34 +219,6 @@ Page({
       message: message,
       theme: theme,
       placement: 'bottom'
-    });
-  },
-  onImportFavoriates() {
-    wx.getClipboardData({
-      success: (res) => {
-        const favorites = this.checkFavorites(res.data.split(','));
-        this.showToast(`成功导入 ${favorites.length} 个法术`, 'success');
-      },
-      fail: (err) => {
-        this.showToast(`导入失败`, 'error');
-      },
-      complete: (res) => {
-        this.flushPage();
-      },
-    })
-  },
-  onExportFavoriates() {
-    const favoritesLength = app.globalData.favorites.length;
-    wx.setClipboardData({
-      data: this.getFavoritesStr(),
-      success: (res) => {
-        wx.hideToast();
-        this.showToast(`成功导出 ${favoritesLength} 个法术`, 'success');
-      },
-      fail: (err) => {
-        this.showToast(`导出失败`, 'error');
-      },
-      complete: (res) => this.flushPage(),
     });
   },
 

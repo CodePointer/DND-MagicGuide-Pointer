@@ -59,9 +59,32 @@ function changeFavorite(type, id, marked) {
 }
 
 
+function exportFavorites() {
+  return JSON.stringify(state);
+}
+
+
+function importFavorites(favStr) {
+  if (!favStr) return false;
+  try {
+    const newFavorites = JSON.parse(favStr);
+    state.spells = Array.isArray(newFavorites.spells) ? newFavorites.spells : [];
+    state.monsters = Array.isArray(newFavorites.monsters) ? newFavorites.monsters : [];
+    state.items = Array.isArray(newFavorites.items) ? newFavorites.items : [];
+    saveState();
+    return true;
+  } catch (err) {
+    // console.warn('JSON parse error:', err);
+    return false;
+  }
+}
+
+
 module.exports = {
   getFavorites,
   getAllFavorites,
   isFavorite,
   changeFavorite,
+  exportFavorites,
+  importFavorites,
 };
