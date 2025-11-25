@@ -2,19 +2,72 @@
 <t-toast id="t-toast" />
 
 <view class="page-container">
-  <view class="spell-list-container">
-    <favorate-io 
-      bind:importFavoriates="onImportFavoriates"
-      bind:exportFavoriates="onExportFavoriates"
-    />
-    <spell-list 
-      spellTotalNumber="{{markedSpells.length}}"
-      spells="{{showingSpells}}"
-      bind:spellCellClick="onSpellCellClick"
-      bind:spellMarkChange="onSpellSwitchChange"
-      bind:loadMoreSpell="onLoadMoreSpellClick"
-    />
+  <favorate-io 
+    bind:importFavoriates="onImportFavoriates"
+    bind:exportFavoriates="onExportFavoriates"
+  />
+
+  <view class="collapse-wrapper">
+    <t-collapse
+      value="{{activePanels}}"
+      bind:change="handlePanelChange"
+      expandMutex
+      expandIcon
+    >
+      <t-collapse-panel 
+        class="collapse-panel"
+        header="法术" 
+        value="{{0}}" 
+        placement="down"
+        header-left-icon="book"
+        header-right-content="{{markedSpellsInfo.length}} 个法术" 
+        disabled="{{markedSpellsInfo.length <= 0}}"
+      >
+        <view class="list-container">
+          <card-list 
+            generic:card-item="spell-card"
+            label="法术"
+            objectType="spell"
+            items="{{markedSpellsInfo}}"
+            bind:itemCellClick="onCellClick"
+            bind:itemMarkChange="onSwitchChange"
+            bind:loadMoreItem="onLoadMoreClick"
+          />
+        </view>
+      </t-collapse-panel>
+      <t-collapse-panel 
+        header="怪物" 
+        value="{{1}}" 
+        placement="down"
+        header-left-icon="cat"
+        header-right-content="{{markedMonstersInfo.length}} 个怪物" 
+        disabled="{{markedMonstersInfo.length <= 0}}"
+      >
+        <view class="list-container">
+          <card-list 
+            generic:card-item="monster-card"
+            label="怪物"
+            objectType="monster"
+            items="{{markedMonstersInfo}}"
+            bind:itemCellClick="onCellClick"
+            bind:itemMarkChange="onSwitchChange"
+            bind:loadMoreItem="onLoadMoreClick"
+          />
+        </view>
+      </t-collapse-panel>
+      <!-- <t-collapse-panel 
+        header="物品" 
+        value="{{2}}" 
+        placement="down"
+        header-left-icon="guitar"
+        header-right-content="{{0}} 个物品" 
+        disabled="{{false}}"
+        expandIcon
+      >
+      </t-collapse-panel> -->
+    </t-collapse>
   </view>
+  
 
   <t-footer
     text="© 2025 DND Magic Guide | v{{version}}"
@@ -24,7 +77,8 @@
   ></t-footer>
 
   <my-popup visible="{{showPopup}}" bind:close="onClosePopup">
-    <spell-detail wx:if="{{selectedSpell}}" spell="{{selectedSpell}}" />
+    <spell-detail wx:if="{{selectedObjectType === 'spell'}}" spell="{{selectedObject}}" />
+    <monster-detail wx:if="{{selectedObjectType === 'monster'}}" monster="{{selectedObject}}" />
   </my-popup>
 </view>
 

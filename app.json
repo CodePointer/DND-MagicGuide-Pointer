@@ -1,8 +1,9 @@
 {
+  "entryPagePath": "pages/spells/spells",
   "pages": [
+    "pages/mine/mine",
     "pages/monsters/monsters",
-    "pages/spells/spells",
-    "pages/mine/mine"
+    "pages/spells/spells"
   ],
   "subpackages": [
     {

@@ -1,7 +1,7 @@
 <!--pages/common/card-list/card-list.wxml-->
 <view class="item-list-container">
   <card-item 
-    wx:for="{{items}}" 
+    wx:for="{{visibleItems}}" 
     wx:key="id" 
     item="{{item}}"
     bind:itemCellClick="onItemCellClick"
@@ -10,8 +10,8 @@
 </view>
 
 <view class="divide-container">
-  <t-divider content="当前 {{items.length}} 个{{label}}，共 {{totalNumber}} 个" />
+  <t-divider content="当前 {{visibleItems.length}} 个{{label}}，共 {{items.length}} 个" />
 </view>
-<view wx:if="{{totalNumber > items.length}}" class="expand-container">
+<view wx:if="{{hasMore}}" class="expand-container">
   <t-button size="large" variant="text" bind:tap="onLoadMoreButtonClick" block>展开更多</t-button>
 </view>

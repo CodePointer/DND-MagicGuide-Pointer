@@ -1,5 +1,7 @@
 // pages/monsters/monsters.js
-const app = getApp();
+import { isFavorite, changeFavorite } from '../../utils/favorites';
+import { processMonsterData } from '../../utils/dataprocessor';
+
 
 Page({
 
@@ -12,19 +14,19 @@ Page({
     searchValue: '',
     selectedFilters: null,
 
-    allMonsters: [],
-    filteredMonsters: [],
-    showingMonsters: [],
-    pageSize: 16,
+    filteredMonstersInfo: [],
 
     selectedMonster: null,
     showPopup: false
   },
 
+  allMonstersMap: {},
+  allMonstersInfo: [],
+
   flushPage() {
     this.prepareAllMonsters();
     this.applyFilter();
-    this.loadShowingMonsters(false);
+    // this.loadShowingMonsters(false);
   },
 
   /**
@@ -37,7 +39,9 @@ Page({
         url: '/subpackages/monsterData/dataLoader/dataLoader',
       });
     } else {
-      this.setData({ allMonsters: cached });
+      const { allMonstersMap, allMonstersInfo } = processMonsterData(cached);
+      this.allMonstersMap = allMonstersMap;
+      this.allMonstersInfo = allMonstersInfo;
     }
   },
   applyFilter() {
@@ -51,8 +55,7 @@ Page({
       }
     };
 
-    const allMonsters = this.data.allMonsters;
-    const filteredMonsters = allMonsters
+    const filteredMonstersInfo = this.allMonstersInfo
       .filter(monster => {
         const matchName = searchValue == '' ||
           monster.chineseName.includes(searchValue) ||
@@ -71,23 +74,20 @@ Page({
       .map(monster => ({
         ...monster,
         id: monster.monsterId,
-        marked: false,
+        marked: isFavorite('monsters', monster.monsterId),
       }));
-    this.setData({ filteredMonsters });
+    this.setData({ filteredMonstersInfo: filteredMonstersInfo });
   },
-  loadShowingMonsters(appendFlag) {
-    const currentMonsterNum = appendFlag ? this.data.showingMonsters.length : 0;
-    const toSliceNum = Math.min(
-      this.data.filteredMonsters.length,
-      currentMonsterNum + this.data.pageSize
-    );
-    this.setData({
-      showingMonsters: this.data.filteredMonsters.slice(0, toSliceNum),
-    });
-  },
-  changeFavorite(monsterId, marked) {
-
-  },
+  // loadShowingMonsters(appendFlag) {
+  //   const currentMonsterNum = appendFlag ? this.data.showingMonsters.length : 0;
+  //   const toSliceNum = Math.min(
+  //     this.data.filteredMonsters.length,
+  //     currentMonsterNum + this.data.pageSize
+  //   );
+  //   this.setData({
+  //     showingMonsters: this.data.filteredMonsters.slice(0, toSliceNum),
+  //   });
+  // },
 
   /**
    * Monster-filter
@@ -99,7 +99,7 @@ Page({
       selectedFilters: selectedFilters,
     });
     this.applyFilter();
-    this.loadShowingMonsters(false);
+    // this.loadShowingMonsters(false);
   },
 
   /**
@@ -107,7 +107,7 @@ Page({
    */
   onMonsterCellClick(e) {
     const { itemId } = e.detail;
-    const monster = this.data.showingMonsters.find(m => m.monsterId == itemId);
+    const monster = this.allMonstersMap[itemId];
     if (monster) {
       this.setData({
         selectedMonster: monster,
@@ -126,11 +126,17 @@ Page({
    * Monster list
    */
   onLoadMoreMonsterClick(e) {
-    this.loadShowingMonsters(true);
+    // this.loadShowingMonsters(true);
   },
   onMonsterSwitchChange(e) {
     const { itemId, marked } = e.detail;
-    this.changeFavorite(itemId, marked);
+    changeFavorite('monsters', itemId, marked);
+    const idx = this.data.filteredMonstersInfo.findIndex(mo => mo.monsterId === itemId);
+    if (idx >= 0) {
+      this.setData({
+        [`filteredMonstersInfo[${idx}].marked`]: marked,
+      });
+    };
   },
 
   /**

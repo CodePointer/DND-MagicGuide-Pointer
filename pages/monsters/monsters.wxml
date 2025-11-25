@@ -11,8 +11,8 @@
     <card-list
       generic:card-item="monster-card"
       label="怪物"
-      totalNumber="{{filteredMonsters.length}}"
-      items="{{showingMonsters}}"
+      objectType="monster"
+      items="{{filteredMonstersInfo}}"
       bind:itemCellClick="onMonsterCellClick"
       bind:itemMarkChange="onMonsterSwitchChange"
       bind:loadMoreItem="onLoadMoreMonsterClick"

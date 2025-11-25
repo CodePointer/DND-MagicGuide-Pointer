@@ -15,8 +15,8 @@
     <card-list 
       generic:card-item="spell-card"
       label="法术"
-      totalNumber="{{filteredSpells.length}}"
-      items="{{showingSpells}}"
+      objectType="spell"
+      items="{{filteredSpellsInfo}}"
       bind:itemCellClick="onSpellCellClick"
       bind:itemMarkChange="onSpellSwitchChange"
       bind:loadMoreItem="onLoadMoreSpellClick"

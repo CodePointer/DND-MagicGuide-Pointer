@@ -4,10 +4,16 @@
     "t-loading": "/miniprogram_npm/tdesign-miniprogram/loading/loading",
     "t-footer": "/miniprogram_npm/tdesign-miniprogram/footer/footer",
     "t-toast": "/miniprogram_npm/tdesign-miniprogram/toast/toast",
+    "t-collapse": "/miniprogram_npm/tdesign-miniprogram/collapse/collapse",
+    "t-collapse-panel": "/miniprogram_npm/tdesign-miniprogram/collapse-panel/collapse-panel",
     "favorate-io": "./favorate-io/favorate-io",
     "spell-list": "/pages/common/spell-list/spell-list",
+    "card-list": "/pages/common/card-list/card-list",
+    "spell-card": "/pages/common/spell-card/spell-card",
+    "monster-card": "/pages/common/monster-card/monster-card",
     "my-popup": "/pages/common/my-popup/my-popup",
     "spell-detail": "/pages/common/spell-detail/spell-detail",
+    "monster-detail": "/pages/common/monster-detail/monster-detail",
     "custom-tab-bar": "/custom-tab-bar/index"
   }
 }

@@ -1,9 +1,9 @@
 // pages/spells/spells.js
-const app = getApp();
-// const allSpells = require('../../subpackages/allSpells.js').default;
+import { isFavorite, changeFavorite } from '../../utils/favorites';
+import { processSpellData } from '../../utils/dataprocessor';
+
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,20 +12,22 @@ Page({
 
     searchValue: '',
     selectedFilters: null,
-
-    allSpells: [],
-    filteredSpells: [],
-    showingSpells: [],
-    pageSize: 16,
+    // allSpells: [],
+    filteredSpellsInfo: [],
+    // showingSpells: [],
+    // pageSize: 16,
 
     selectedSpell: null,
     showPopup: false
   },
 
+  allSpellsMap: {},
+  allSpellsInfo: [],
+
   flushPage() {
     this.prepareAllSpells();
     this.applyFilter();
-    this.loadShowingSpells(false);
+    // this.loadShowingSpells(false);
   },
 
   /**
@@ -40,15 +42,14 @@ Page({
         url: '/subpackages/spellData/dataLoader/dataLoader',
       });
     } else {
-      // console.log('Loaded from cache', cached.length);
-      this.setData({ allSpells: cached });
+      const { allSpellsMap, allSpellsInfo } = processSpellData(cached);
+      this.allSpellsMap = allSpellsMap;
+      this.allSpellsInfo = allSpellsInfo;
     }
   },
   applyFilter() {
     const { searchValue, selectedFilters } = this.data;
-    const allSpells = this.data.allSpells;
-    const favorites = new Set(app.globalData.favorites);
-    const filteredSpells = allSpells
+    const filteredSpellsInfo = this.allSpellsInfo
       .filter(spell => {
         const matchName = searchValue == '' ||
           spell.chineseName.includes(searchValue) ||
@@ -66,35 +67,20 @@ Page({
       .map(spell => ({
         ...spell,
         id: spell.spellId,
-        marked: favorites.has(spell.spellId),
+        marked: isFavorite('spells', spell.spellId),
       }));
-    this.setData({ filteredSpells: filteredSpells });
+    this.setData({ filteredSpellsInfo: filteredSpellsInfo });
   },
-  loadShowingSpells(appendFlag) {
-    const currentSpellNum = appendFlag ? this.data.showingSpells.length : 0;
-    const toSliceNum = Math.min(
-      this.data.filteredSpells.length, 
-      currentSpellNum + this.data.pageSize,
-    );
-    this.setData({
-      showingSpells: this.data.filteredSpells.slice(0, toSliceNum),
-    });
-  },
-  changeFavoriate(spellId, marked) {
-    // 1. Update favorites
-    app.updateFavorite(spellId, marked);
-    // 2. Update locally
-    const updateMarkedStatus = (arrName) => {
-      const idx = this.data[arrName].findIndex(sp => sp.spellId === spellId);
-      if (idx >= 0) {
-        this.setData({
-          [`${arrName}[${idx}].marked`]: marked,
-        });
-      };
-    };
-    updateMarkedStatus('filteredSpells');
-    updateMarkedStatus('showingSpells');
-  },
+  // loadShowingSpells(appendFlag) {
+  //   const currentSpellNum = appendFlag ? this.data.showingSpells.length : 0;
+  //   const toSliceNum = Math.min(
+  //     this.data.filteredSpells.length, 
+  //     currentSpellNum + this.data.pageSize,
+  //   );
+  //   this.setData({
+  //     showingSpells: this.data.filteredSpells.slice(0, toSliceNum),
+  //   });
+  // },
 
   /**
    * Spell-filter
@@ -106,7 +92,7 @@ Page({
       selectedFilters: selectedFilters,
     });
     this.applyFilter();
-    this.loadShowingSpells(false);
+    // this.loadShowingSpells(false);
   },
 
   /**
@@ -114,7 +100,7 @@ Page({
    */
   onSpellCellClick(e) {
     const { itemId } = e.detail;
-    const spell = this.data.showingSpells.find(s => s.spellId == itemId);
+    const spell = this.allSpellsMap[itemId];
     if (spell) {
       this.setData({
         selectedSpell: spell,
@@ -130,12 +116,17 @@ Page({
    * Spell list
    */
   onLoadMoreSpellClick(e) {
-    this.loadShowingSpells(true);
+    // this.loadShowingSpells(true);
   },
   onSpellSwitchChange(e) {
-    console.log(e);
     const { itemId, marked } = e.detail;
-    this.changeFavoriate(itemId, marked);
+    changeFavorite('spells', itemId, marked);
+    const idx = this.data.filteredSpellsInfo.findIndex(sp => sp.spellId === itemId);
+    if (idx >= 0) {
+      this.setData({
+        [`filteredSpellsInfo[${idx}].marked`]: marked,
+      });
+    }
   },
 
   /**

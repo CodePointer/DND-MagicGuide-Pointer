@@ -1,6 +1,10 @@
 App({
   globalData: {
-    favorites: [],
+    favorites: {
+      spells: [],
+      monsters: [],
+      items: [],
+    },
     // spells: [],
   },
 
@@ -15,27 +19,32 @@ App({
   prepareFavorite() {
     const cached = wx.getStorageSync('userFavorite');
     if (!cached) {
-      this.globalData.favorites = [];
+      this.globalData.favorites = {
+        spells: [],
+        monsters: [],
+        items: [],
+      };
     } else {
       this.globalData.favorites = cached;
     }
   },
 
-  updateFavorite(spellId, marked) {
-    let newFavorites = this.globalData.favorites;
-    const isFavorite = this.globalData.favorites.includes(spellId);
+  updateFavorite(key, id, marked) {
+    let newFavorites = this.globalData.favorites[key];
+    const isFavorite = this.globalData.favorites[key].includes(id);
     if (isFavorite && !marked) {
-      newFavorites = newFavorites.filter(id => id !== spellId);
+      newFavorites = newFavorites.filter(itemId => itemId !== id);
     } else if (!isFavorite && marked) {
-      newFavorites.push(spellId);
+      newFavorites.push(id);
     } else {
       return;
     }
-    this.updateFavorites(newFavorites);
+    this.globalData.favorites[key] = newFavorites;
+    wx.setStorageSync('userFavorites', this.globalData.favorites);
   },
 
-  updateFavorites(newFavorites) {
+  updateFavoriteAll(newFavorites) {
     this.globalData.favorites = newFavorites;
-    wx.setStorageSync('userFavorites', newFavorites);
+    wx.setStorageSync('userFavorites', this.globalData.favorites);
   }
 })

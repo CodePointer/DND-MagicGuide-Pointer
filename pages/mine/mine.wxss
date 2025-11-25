@@ -10,7 +10,7 @@
   display: flex;
   align-self: center;
 }
-.spell-list-container {
+.collapse-wrapper {
   flex: 1;
   overflow-y: auto;
 }
@@ -21,3 +21,6 @@
   align-items: center;
   flex-wrap: wrap;
 }
+/* :root {
+  --td-collapse-content-padding: 0;
+} */
