@@ -1,0 +1,12 @@
+/* pages/calculator/calculator.wxss */
+.page-container {
+  margin: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+}
+
+.collapse-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}

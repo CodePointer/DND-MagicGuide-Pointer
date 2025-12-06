@@ -1,5 +1,11 @@
 @import '/miniprogram_npm/tdesign-miniprogram/common/style/theme/_index.wxss';
 
+@media (prefers-color-scheme: dark) {
+  page {
+    --td-collapse-icon-color: rgba(255, 255, 255, 0.87);
+  }
+}
+
 page {
   /* Color */
   --color-bg: #fff7f2;

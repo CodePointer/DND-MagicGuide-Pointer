@@ -1,0 +1,67 @@
+<!--pages/calculator/hp-calculator/hp-calculator.wxml-->
+<view class="hp-calculator-container">
+  <view class="button-container">
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block
+      t-class="group-btn"
+      bind:tap="onLevelButtonTap"
+    >
+      {{selectedLevel ? selectedLevel.label : '等级'}}
+    </t-button>
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block
+      t-class="group-btn"
+      bind:tap="onHpDiceButtonTap"
+    >
+      {{selectedHpDice ? selectedHpDice.label : '生命骰'}}
+    </t-button>
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block
+      t-class="group-btn"
+      bind:tap="onConstitutionButtonTap"
+    >
+      {{selectedConstitution ? selectedConstitution.label : '体质'}}
+    </t-button>
+  </view>
+
+  <view class="report-container" wx:if="{{reportText}}">
+    <view class="title-container">
+      <view class="text-container">
+        <text class="total-hp">生命总值为：{{reportText}}</text>
+      </view>
+    </view>
+
+    <view class="detail-table-col-container">
+      <view class="detail-table-row-container detail-table-row-container-title">
+        <view class="detail-table-cell-container" wx:for="{{detailTextsTitle}}" wx:key="id">
+          <text class="table-title">{{item}}</text>
+        </view>
+      </view>
+      <view class="detail-table-row-container" wx:for="{{detailTexts}}" wx:key="id">
+        <view class="detail-table-cell-container" wx:for="{{item}}" wx:key="id">
+          <text class="table-value">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <t-picker
+    visible="{{pickerVisible}}"
+    data-key="{{pickerDataKey}}"
+    title="{{pickerTitle}}"
+    cancel-btn="取消"
+    confirm-btn="确认"
+    usingCustomNavbar
+    bind:visible-change="onPickerCancel"
+    bindchange="onPickerConfirm"
+    bindcancel="onPickerCancel"
+  >
+    <t-picker-item options="{{pickerData}}"/>
+  </t-picker>
+</view>

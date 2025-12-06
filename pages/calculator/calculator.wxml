@@ -1,0 +1,56 @@
+<!--pages/calculator/calculator.wxml-->
+<view class="page-container">
+  <view class="collapse-wrapper">
+    <t-collapse
+      value="{{activePanels}}"
+      bind:change="handlePanelChange"
+      expandMutex
+      expandIcon
+    >
+      <t-collapse-panel
+        header="属性值计算器"
+        value="{{0}}"
+        placement="down"
+        header-left-icon="calculation"
+      >
+        <text>开发中。27buy，或是4d6大转盘。</text>
+      </t-collapse-panel>
+
+      <t-collapse-panel
+        header="生命值计算器"
+        value="{{1}}"
+        placement="down"
+        header-left-icon="heart"
+      >
+        <hp-calculator />
+      </t-collapse-panel>
+
+      <t-collapse-panel
+        header="状态术语查询"
+        value="{{2}}"
+        placement="down"
+        header-left-icon="chat-bubble-help"
+      >
+        <text>开发中。迅速查阅恐惧、目盲等状态术语。</text>
+      </t-collapse-panel>
+
+      <t-collapse-panel
+        header="攻击相关计算"
+        value="{{3}}"
+        placement="down"
+        header-left-icon="bone"
+      >
+        <text>开发中。根据主攻击属性、等级、武器加值、有无熟练，计算攻击命中以及伤害加值。</text>
+      </t-collapse-panel>
+
+      <t-collapse-panel
+        header="施法相关计算"
+        value="{{4}}"
+        placement="down"
+        header-left-icon="filter-2"
+      >
+        <text>开发中。根据主施法属性、等级、法器加值，计算DC、法术攻击命中。</text>
+      </t-collapse-panel>
+    </t-collapse>
+  </view>
+</view>

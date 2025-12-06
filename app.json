@@ -1,9 +1,10 @@
 {
-  "entryPagePath": "pages/spells/spells",
+  "entryPagePath": "pages/calculator/calculator",
   "pages": [
     "pages/spells/spells",
     "pages/monsters/monsters",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/calculator/calculator"
   ],
   "subpackages": [
     {
@@ -34,6 +35,10 @@
       {
         "pagePath": "pages/monsters/monsters",
         "text": "怪物图鉴"
+      },
+      {
+        "pagePath": "pages/calculator/calculator",
+        "text": "速查工具"
       },
       {
         "pagePath": "pages/mine/mine",
