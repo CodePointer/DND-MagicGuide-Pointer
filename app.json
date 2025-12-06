@@ -1,5 +1,5 @@
 {
-  "entryPagePath": "pages/calculator/calculator",
+  "entryPagePath": "pages/spells/spells",
   "pages": [
     "pages/spells/spells",
     "pages/monsters/monsters",

@@ -8,8 +8,8 @@ const hpDiceData = [6, 8, 10, 12].map((val) => ({
   value: val
 }));
 const constitutionData = new Array(21).fill(null).map((_, i) => ({
-  label: `体质 ${i}`,
-  value: i
+  label: `体质 ${20 - i}`,
+  value: 20 - i
 }));
 const defaultData = [{ label: '无', value: 0 }];
 

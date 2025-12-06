@@ -1,0 +1,54 @@
+<!-- pages/calculator/casting-calculator/casting-calculator.wxml -->
+<view class="casting-calculator-container">
+  <view class="button-container">
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block 
+      t-class="group-btn" 
+      bind:tap="onLevelButtonTap"
+    >
+      {{selectedLevel ? selectedLevel.label : '等级'}}
+    </t-button>
+    <t-button 
+      theme="primary" 
+      size="large" 
+      block 
+      t-class="group-btn" 
+      bind:tap="onAbilityButtonTap"
+    >
+      {{selectedAbility ? selectedAbility.label : '施法属性'}}
+    </t-button>
+  </view>
+
+  <view class="report-container" wx:if="{{reportAttachRoll !== null && reportDamageRoll !== null}}">
+    <t-collapse value="{{activePanels}}" bind:change="handlePanelChange" expandIcon theme="card">
+      <t-collapse-panel header="法术攻击命中加值" header-right-content="{{reportAttachRoll}}" value="{{0}}" placement="down">
+        <view class="detail-report-container">
+          <view class="text-container">
+            <text class="detail-text">属性加值：{{detailAttachRoll[0]}}</text>
+          </view>
+          <view class="text-container">
+            <text class="detail-text">等级的熟练加值：{{detailAttachRoll[1]}}</text>
+          </view>
+        </view>
+      </t-collapse-panel>
+      <t-collapse-panel header="法术豁免DC" header-right-content="{{reportDifficulty}}" value="{{1}}" placement="down">
+        <view class="detail-report-container">
+          <view class="text-container">
+            <text class="detail-text">基础DC：{{detailDifficulty[0]}}</text>
+          </view>
+          <view class="text-container">
+            <text class="detail-text">属性加值：{{detailDifficulty[1]}}</text>
+          </view>
+          <view class="text-container">
+            <text class="detail-text">等级的熟练加值：{{detailDifficulty[2]}}</text>
+          </view>
+        </view>
+      </t-collapse-panel>
+    </t-collapse>
+  </view>
+  <t-picker visible="{{pickerVisible}}" data-key="{{pickerDataKey}}" title="{{pickerTitle}}" cancel-btn="取消" confirm-btn="确认" usingCustomNavbar bind:visible-change="onPickerCancel" bindchange="onPickerConfirm" bindcancel="onPickerCancel">
+    <t-picker-item options="{{pickerData}}" />
+  </t-picker>
+</view>

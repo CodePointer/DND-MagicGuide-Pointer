@@ -1,9 +1,9 @@
 /* pages/calculator/hp-calculator/hp-calculator.wxss */
 .hp-calculator-container {
-  margin: var(--space-md);
+  margin: var(--space-sm);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  /* gap: var(--space-sm); */
 }
 
 .button-container {

@@ -1,0 +1,11 @@
+/* pages/calculator/casting-calculator/casting-calculator.wxss */
+.casting-calculator-container {
+  margin: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.button-container {
+  display: flex;
+  gap: var(--space-md);
+}

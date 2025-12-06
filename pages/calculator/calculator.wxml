@@ -40,7 +40,7 @@
         placement="down"
         header-left-icon="bone"
       >
-        <text>开发中。根据主攻击属性、等级、武器加值、有无熟练，计算攻击命中以及伤害加值。</text>
+        <attack-calculator />
       </t-collapse-panel>
 
       <t-collapse-panel
@@ -49,7 +49,7 @@
         placement="down"
         header-left-icon="filter-2"
       >
-        <text>开发中。根据主施法属性、等级、法器加值，计算DC、法术攻击命中。</text>
+        <casting-calculator />
       </t-collapse-panel>
     </t-collapse>
   </view>

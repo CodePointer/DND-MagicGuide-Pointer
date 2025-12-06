@@ -5,6 +5,8 @@
     "t-collapse-panel": "/miniprogram_npm/tdesign-miniprogram/collapse-panel/collapse-panel",
     "custom-tab-bar": "/custom-tab-bar/index",
 
-    "hp-calculator": "./hp-calculator/hp-calculator"
+    "hp-calculator": "./hp-calculator/hp-calculator",
+    "attack-calculator": "./attack-calculator/attack-calculator",
+    "casting-calculator": "./casting-calculator/casting-calculator"
   }
 }

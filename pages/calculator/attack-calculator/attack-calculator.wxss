@@ -1,0 +1,17 @@
+/* pages/calculator/attack-calculator/attach-calculator.wxss */
+.attack-calculator-container {
+  margin: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.button-row-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+}

@@ -69,8 +69,8 @@ function changeFavorite(type, id, marked) {
 
 
 function exportFavorites() {
-  console.log('exportFavorites', state);
-  console.log('exportFavorites string', JSON.stringify(state));
+  // console.log('exportFavorites', state);
+  // console.log('exportFavorites string', JSON.stringify(state));
   return JSON.stringify(state);
 }
 
